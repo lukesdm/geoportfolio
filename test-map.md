@@ -4,7 +4,7 @@
 <style>
     #map {
       /* configure the size of the map */
-      /* width: 100%; */
+      width: 768px;
       height: 768px;
     }
 </style>
