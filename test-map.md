@@ -1,5 +1,17 @@
 <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+<style>
+    html, body {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    #map {
+      /* configure the size of the map */
+      width: 100%;
+      height: 100%;
+    }
+</style>
 
 # A test page with a map
 <div id="map"></div>
