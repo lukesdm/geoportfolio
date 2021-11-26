@@ -3,9 +3,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
     #map {
-      /* configure the size of the map */
-      width: 768px;
-      height: 768px;
+      /* configure the size of the map (just set height, otherwise mobile is too wide) */
+      /* width: 768px; */
+      height: 512px;
     }
 </style>
 
