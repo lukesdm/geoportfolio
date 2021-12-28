@@ -25,9 +25,11 @@ This is a map of the bakeries of Vienna, using:
 <div class="image">
     <iframe src="maps/bakeries-vienna-map.html"></iframe>
 </div>
+</section>
 
 <section class="spotlight style1 content-align-center onscroll-content-fade-in">
 <div class="content" markdown="1">
 ## The Template
 Based on ['Story' by HTML5 UP](https://html5up.net/story), licensed under [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/).
 </div>
+</section>
