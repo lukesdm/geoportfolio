@@ -8,7 +8,7 @@ layout: story
 <div class="content" markdown="1">
 # Bakeries of Vienna
 This is a simple demonstration of a map-based story.  
-Image: [Pretzels, Morten Nisker Toppenberg](https://www.flickr.com/photos/94211698@N00/3917161112), licensed under [CC BY-NC 2.0](https://creativecommons.org/licenses/by-nc/2.0/).  
+Image: [Pretzels, Morten Nisker Toppenberg][Prz], licensed under [CC BY-NC 2.0][CCBNC2].  
 </div>
 <div class="image" markdown="1">
 ![A stack of fresh pretzels](images/pretzels.jpg)  
@@ -19,8 +19,8 @@ Image: [Pretzels, Morten Nisker Toppenberg](https://www.flickr.com/photos/942116
 <div class="content" markdown="1">
 ## The Map
 This is a map of the bakeries of Vienna, using:
-* [Leaflet](https://leafletjs.com/), with an [OpenStreetMap](https://www.openstreetmap.org/) basemap.
-* A [Web Feature Service (WFS) layer](https://www.data.gv.at/katalog/dataset/stadt-wien_webfeatureservicewfswien) provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna](https://data.wien.gv.at), licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/deed.de).
+* [Leaflet](https://leafletjs.com/), with an [OpenStreetMap][OSM] basemap.
+* A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International]([CCB4]).
 </div>
 <div class="image">
     <iframe src="maps/bakeries-vienna-map.html"></iframe>
@@ -30,6 +30,15 @@ This is a map of the bakeries of Vienna, using:
 <section class="spotlight style1 content-align-center onscroll-content-fade-in">
 <div class="content" markdown="1">
 ## The Template
-Based on ['Story' by HTML5 UP](https://html5up.net/story), licensed under [Creative Commons Attribution 3.0](https://creativecommons.org/licenses/by/3.0/).
+Based on ['Story' by HTML5 UP][H5S], licensed under [Creative Commons Attribution 3.0][CCB3].
 </div>
 </section>
+
+[Prz]:https://www.flickr.com/photos/94211698@N00/3917161112
+[OSM]:https://www.openstreetmap.org/
+[WFS]:https://www.data.gv.at/katalog/dataset/stadt-wien_webfeatureservicewfswien
+[DV]:https://data.wien.gv.at
+[H5S]:https://html5up.net/story
+[CCB4]:https://creativecommons.org/licenses/by/4.0/deed.de
+[CCB3]:https://creativecommons.org/licenses/by/3.0/
+[CCBNC2]:https://creativecommons.org/licenses/by-nc/2.0/
