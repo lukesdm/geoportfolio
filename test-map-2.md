@@ -1,6 +1,3 @@
----
-layout: map-page
----
 # Map Test
 Bakeries of Vienna
 
