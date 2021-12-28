@@ -1,0 +1,9 @@
+/* For maps (& other embeds) - fits in with existing template classes/styles */
+.image iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.banner.style1 .image {
+    width: 60%;
+}
