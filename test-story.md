@@ -10,5 +10,5 @@ Image: [Pretzels, Morten Nisker Toppenberg](https://www.flickr.com/photos/942116
     </div>
     <div class="image" markdown="1">
 ![A stack of fresh pretzels](images/pretzels.jpg)  
-    <div>
+    </div>
 </section>
