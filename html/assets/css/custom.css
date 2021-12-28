@@ -4,14 +4,15 @@
   height: 100%;
 }
 
-.spotlight.style1.fullscreen {
-    min-height: 100vh;
+/* Transitions for maps (in iframes) - add more if needed (see similar in main.css for .image img elements) 
+*/
+.banner.onscroll-image-fade-in .image iframe {
+  -moz-transition: opacity 0.75s ease-in-out;
+  -webkit-transition: opacity 0.75s ease-in-out;
+  -ms-transition: opacity 0.75s ease-in-out;
+  transition: opacity 0.75s ease-in-out;
 }
 
-.spotlight.style1 .image {
-    width: 55%;
-}
-
-.spotlight.style1 .content {
-    width: 45%;
+.banner.onscroll-image-fade-in.is-inactive .image iframe {
+  opacity: 0;
 }
