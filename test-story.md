@@ -19,8 +19,8 @@ Image: [Pretzels, Morten Nisker Toppenberg][Prz], licensed under [CC BY-NC 2.0][
 <div class="content" markdown="1">
 ## The Map
 This is a map of the bakeries of Vienna, using:
-* [Leaflet](https://leafletjs.com/), with an [OpenStreetMap][OSM] basemap.
-* A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International]([CCB4]).
+* [Leaflet][LL], with an [OpenStreetMap][OSM] basemap.
+* A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International][CCB4].
 </div>
 <div class="image">
     <iframe src="maps/bakeries-vienna-map.html"></iframe>
@@ -35,6 +35,7 @@ Based on ['Story' by HTML5 UP][H5S], licensed under [Creative Commons Attributio
 </section>
 
 [Prz]:https://www.flickr.com/photos/94211698@N00/3917161112
+[LL]:https://leafletjs.com/
 [OSM]:https://www.openstreetmap.org/
 [WFS]:https://www.data.gv.at/katalog/dataset/stadt-wien_webfeatureservicewfswien
 [DV]:https://data.wien.gv.at
