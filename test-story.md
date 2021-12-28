@@ -1,5 +1,5 @@
 ---
-layout:story
+layout: story
 ---
 
 <section class="banner style1 orient-right content-align-left image-position-right onload-image-fade-in onload-content-fade-in fullscreen">
