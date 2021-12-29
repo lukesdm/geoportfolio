@@ -4,7 +4,6 @@
     href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
   />
   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.min.js"></script>
   <style>
     .map-container {
       height: 100%;
@@ -39,11 +38,18 @@
     const parameters = L.Util.extend(defaultParameters);
     const URL = owsrootUrl + L.Util.getParamString(parameters);
 
-    ajax = $.ajax({
-      url: URL,
-      dataType: "json",
-      success: function (response) {
-        WFSLayer = L.geoJson(response, {
+    (async () => {
+      let features = null;
+      try {
+        const response = await fetch(URL);
+        features = await response.json();
+      }
+      catch {
+        alert("Sorry, there was a problem fetching Wien WFS data.");
+        return;
+      }
+
+      WFSLayer = L.geoJson(features, {
           pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {
               icon: new L.DivIcon({ html: "🥖" }),
@@ -57,7 +63,6 @@
             );
           },
         }).addTo(map);
-      },
-    });
+    })();
   </script>
 </body>
