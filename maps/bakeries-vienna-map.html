@@ -13,6 +13,7 @@
     }
     .bakery-marker {
       text-shadow: 2px 2px 5px;
+      font-size: larger;
     }
   </style>
 </head>
@@ -62,9 +63,17 @@
             });
           },
           onEachFeature: function (feature, layer) {
-            popupOptions = { maxWidth: 200 };
+            popupOptions = { maxWidth: 350 };
             layer.bindPopup(
-              "Bakery: " + feature.properties.NAME + "</br>",
+              `<h3>${feature.properties.NAME}</h3>
+              <h4>${feature.properties.ADRESSE ?? ''}</h4>
+              <p>${feature.properties.OEFFNUNGSZEITEN1 ?? ''}<br>
+                ${feature.properties.OEFFNUNGSZEITEN2 ?? ''}<br>
+                ${feature.properties.OEFFNUNGSZEITEN3 ?? ''}<br>
+                ${feature.properties.OEFFNUNGSZEITEN4 ?? ''}<br>
+                ${feature.properties.OEFFNUNGSZEITEN5 ?? ''}<br>
+                ${feature.properties.OEFFNUNGSZEITEN6 ?? ''}<br>
+              </p>`,
               popupOptions
             );
           },
