@@ -31,8 +31,7 @@
       version: "2.0.0",
       request: "GetFeature",
       typeNames: "ogdwien:BUECHEREIOGD",
-      outputFormat: "text/javascript",
-      format_options: "callback:getJson",
+      outputFormat: "application/json",
       srsName: "epsg:4326",
     };
 
@@ -42,8 +41,7 @@
 
     ajax = $.ajax({
       url: URL,
-      dataType: "jsonp",
-      jsonpCallback: "getJson",
+      dataType: "json",
       success: function (response) {
         WFSLayer = L.geoJson(response, {
           pointToLayer: function (feature, latlng) {
