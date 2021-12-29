@@ -4,8 +4,7 @@
   height: 100%;
 }
 
-/* Transitions for maps (in iframes) - add more if needed (see similar in main.css for .image img elements) 
-*/
+/* Transitions for maps (in iframes) - add more if needed (see similar in main.css for .image img elements) */
 .banner.onscroll-image-fade-in .image iframe {
   -moz-transition: opacity 0.75s ease-in-out;
   -webkit-transition: opacity 0.75s ease-in-out;
@@ -15,4 +14,9 @@
 
 .banner.onscroll-image-fade-in.is-inactive .image iframe {
   opacity: 0;
+}
+
+/* Better for mobile, when text gets centered */
+ul {
+  list-style-position: inside;
 }
