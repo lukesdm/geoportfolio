@@ -8,6 +8,12 @@
     .map-container {
       height: 100%;
     }
+    .bakery-marker::before {
+      content: "🥨";
+    }
+    .bakery-marker {
+      text-shadow: 2px 2px 5px;
+    }
   </style>
 </head>
 <body>
@@ -52,7 +58,7 @@
       WFSLayer = L.geoJson(features, {
           pointToLayer: function (feature, latlng) {
             return L.marker(latlng, {
-              icon: new L.DivIcon({ html: "🥖" }),
+              icon: new L.DivIcon({ className: "bakery-marker" }),
             });
           },
           onEachFeature: function (feature, layer) {
