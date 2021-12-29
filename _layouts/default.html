@@ -7,19 +7,6 @@
     <meta name="viewport" content="width=device-width,maximum-scale=2">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
     
-    <!-- Fix flag emojis for Windows -->
-    <style>
-      .flag-gb::before {
-        content: url("{{ '/assets/flags/4x3/gb.svg' | relative_url }}");
-      }
-      .flag-at::before {
-        content: url("{{ '/assets/flags/4x3/at.svg' | relative_url }}");
-      }
-      .flag-ic::before {
-        content: url("{{ '/assets/flags/4x3/ic.svg' | relative_url }}");
-      }
-    </style>
-
 {% seo %}
     {% include head-custom.html %}
   </head>
