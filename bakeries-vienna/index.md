@@ -11,7 +11,7 @@ This is a simple demonstration of a map-based story.
 Image: [Pretzels, Morten Nisker Toppenberg][Prz], licensed under [CC BY-NC 2.0][CCBNC2].  
 </div>
 <div class="image" markdown="1">
-![A stack of fresh pretzels](images/pretzels.jpg)  
+![A stack of fresh pretzels](pretzels.jpg)  
 </div>
 </section>
 
@@ -23,7 +23,7 @@ This is a map of the bakeries of Vienna, using:
 * A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International][CCB4].
 </div>
 <div class="image">
-    <iframe src="maps/bakeries-vienna-map.html"></iframe>
+    <iframe src="bakeries-vienna-map.html"></iframe>
 </div>
 </section>
 
