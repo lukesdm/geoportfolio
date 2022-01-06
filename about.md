@@ -14,4 +14,4 @@ Originally a software developer, a fondness for travel, the outdoors and nature 
 
 CV available on request.
 
-Contact me with the links below, or connect with me on [LinkedIn](https://www.linkedin.com/in/luke-mcquade-87bba036/).
+Please feel free to contact me with the links below, or connect with me on [LinkedIn](https://www.linkedin.com/in/luke-mcquade-87bba036/).
