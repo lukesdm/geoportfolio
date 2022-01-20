@@ -7,7 +7,7 @@ layout: story
 <section class="banner style1 orient-right content-align-left image-position-right onload-image-fade-in onload-content-fade-in fullscreen">
 <div class="content" markdown="1">
 # Bakeries of Vienna
-This is a simple demonstration of a map-based story.  
+This is a simple demonstration of a map-based story x.  
 Image: [Pretzels, Morten Nisker Toppenberg][Prz], licensed under [CC BY-NC 2.0][CCBNC2].  
 </div>
 <div class="image" markdown="1">
