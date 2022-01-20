@@ -20,3 +20,17 @@
 ul {
   list-style-position: inside;
 }
+
+@media only screen and (min-width: 851px) {
+  .lm-sticky {
+    position: sticky;
+    top: 0;
+    max-height: 100vh;
+  }
+  .banner.style1 {
+    overflow-x: visible;
+  }
+  div#wrapper {
+    overflow-x:visible;
+  }
+}
