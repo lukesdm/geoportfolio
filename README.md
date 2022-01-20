@@ -1,37 +1,19 @@
-## Welcome to GitHub Pages
+# Luke's geoPorfolio Site
+This is a Jekyll / Github Pages site.
 
-You can use the [editor on GitHub](https://github.com/lukesdm/eportfolio/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+It uses the [Slate theme](https://github.com/pages-themes/slate) for regular pages, and a custom theme based on ['Story' by HTML5UP](https://html5up.net/story) for map-based stories.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## local dev
 
-### Markdown
+Prerequisites:
+* Ruby+DevKit (currently using v2.7.5)
+* `gem install bundler`
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Build and start dev server:
+```
+bundle install
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+bundle exec jekyll serve
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lukesdm/eportfolio/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+If it no longer matches behaviour seen online, try updating dependencies. Also, GitHub Actions may do some extra magic.
