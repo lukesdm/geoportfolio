@@ -1,0 +1,1 @@
+var json_PourPoint_14 = {"type":"FeatureCollection","name":"PourPoint_14","crs":{"type":"name","properties":{"name":"urn:ogc:def:crs:OGC:1.3:CRS84"}},"features":[{"type":"Feature","properties":{"fid":"1"},"geometry":{"type":"Point","coordinates":[12.491339540886916,47.282638463591098]}}]}
