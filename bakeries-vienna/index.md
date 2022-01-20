@@ -15,15 +15,34 @@ Image: [Pretzels, Morten Nisker Toppenberg][Prz], licensed under [CC BY-NC 2.0][
 </div>
 </section>
 
-<section class="banner style1 orient-left content-align-left image-position-center onscroll-content-fade-in onscroll-image-fade-in fullscreen">
+<section class="banner style1 orient-left content-align-left image-position-center onscroll-content-fade-in onscroll-image-fade-in fullscreen lm-sticky-left">
+<div class="image">
+    <iframe src="bakeries-vienna-map.html"></iframe>
+</div>
+</section>
+
+<section class="spotlight style1 content-align-center onscroll-content-fade-in lm-content-right">
 <div class="content" markdown="1">
 ## The Map
 This is a map of the bakeries of Vienna, using:
 * [Leaflet][LL], with an [OpenStreetMap][OSM] basemap.
 * A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International][CCB4].
-</div>
-<div class="image">
-    <iframe src="bakeries-vienna-map.html"></iframe>
+## The Map
+This is a map of the bakeries of Vienna, using:
+* [Leaflet][LL], with an [OpenStreetMap][OSM] basemap.
+* A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International][CCB4].
+## The Map
+This is a map of the bakeries of Vienna, using:
+* [Leaflet][LL], with an [OpenStreetMap][OSM] basemap.
+* A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International][CCB4].
+## The Map
+This is a map of the bakeries of Vienna, using:
+* [Leaflet][LL], with an [OpenStreetMap][OSM] basemap.
+* A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International][CCB4].
+## The Map
+This is a map of the bakeries of Vienna, using:
+* [Leaflet][LL], with an [OpenStreetMap][OSM] basemap.
+* A [Web Feature Service (WFS) layer][WFS] provided by the Austrian open Spatial Data Infrastucture. Data source: [City of Vienna][DV], licensed under [Creative Commons Attribution 4.0 International][CCB4].
 </div>
 </section>
 

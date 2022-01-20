@@ -20,3 +20,24 @@
 ul {
   list-style-position: inside;
 }
+
+@media only screen and (min-width: 851px) {
+  .banner.style1.lm-sticky-left {
+    position: sticky;
+    top: 0;
+    max-width: 50%;
+    height: 100vh;
+  }
+  .lm-content-right {
+    left: 50%;
+    max-width:50%
+  }
+  .lm-content-right .spotlight.style1 .content {
+    padding:3.5rem 3.5rem 2.5rem 3.5rem;
+  }
+  div#wrapper {
+    overflow-x: visible; /* auto ? */
+    
+  }
+  }
+  
