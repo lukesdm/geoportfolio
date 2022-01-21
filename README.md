@@ -1,4 +1,4 @@
-# Luke's geoPorfolio Site
+# Luke's geoPortfolio Site
 This is a Jekyll / Github Pages site.
 
 It uses the [Slate theme](https://github.com/pages-themes/slate) for regular pages, and a custom theme based on ['Story' by HTML5UP](https://html5up.net/story) for map-based stories.
