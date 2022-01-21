@@ -21,6 +21,10 @@ ul {
   list-style-position: inside;
 }
 
+.content img {
+  max-width: 100%;
+}
+
 @media only screen and (min-width: 851px) {
   .lm-sticky {
     position: sticky;
