@@ -61,22 +61,18 @@ The calculated stream network, sub-basins and area zones within the catchment ar
 ## Discussion
 ### Q: *What are the most critical zones in the catchment area, and how might land cover/use decisions influence the risk of floods?*
 
-The peaks in the histogram represent the largest areas of similar distance, and hence contribution to flow. Deforestation leads to less absorption of rain by root systems, so clear-cutting in the areas would have the greatest adverse impact on flood risk. Similarly, soil-sealing inhibits natural drainage, so building on these areas is a further land use change that would negatively affect flood risk. The symbology was chosen accordingly: Green = low impact on flood risk, red = high impact on flood risk.
-
-### Q: *What are some of the limitations of this model?*
-* No groundwater
-* No slope, land cover
-* The larger the area, the less reliable (uniform rainfall) 
+The peaks in the histogram represent the largest areas of similar distance, and hence contribution to flow. Deforestation leads to less absorption of rain by root systems, so clear-cutting in the areas would have the greatest adverse impact on flood risk. Similarly, soil-sealing inhibits natural drainage, so building on these areas is a further land use change that would negatively affect flood risk. The symbology was chosen accordingly: Green = low impact on flood risk, red = high impact on flood risk.  
 
 ### DEM selection
 Salzburg has freely available digital terrain models (DTMs) of the entire state down to 1m resolution. Initially a DTM of 5m meters was chosen. However, this seemed to be *too* fine - the  tools model channels as single-cell-width (raster) and lines (vector), and in reality the streams in the study area were wider than this.  
+
 ![5m](assets/fine-dem.png)  
-📷*This resulted in multiple channels for the same feature, and a confusing stream network and results of subsequent calculations. You can also see the effects here of choosing a low  [channel initiation threshold](#channel-initiation-threshold)*
+📷*This resulted in multiple channels for the same feature, and a confusing stream network and results of subsequent calculations. You can also see the effects here of choosing a low  [channel initiation threshold](#channel-initiation-threshold).*
 
 Resampling the DEM to 20m gave much better results.
 
 ### Study area
-You will notice from the map the irregular shape of the study area. This is due to the DEM being avaialble for the state of Salzburg, and so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed*. For a more accurate assessment, the DEM should be patched with data from the surrounding areas.
+You will notice from the map the irregular shape of the study area. This is due to the DEM being for the state of Salzburg only, so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed*. For a more accurate assessment, the DEM should be patched with data from the surrounding areas.
 
 [![Patagonia disputed border](assets\southern-patagonian-ice-field-border.png)][WA_PB]  
 📷 **For example, see some of the [Argentina-Chile border disputes][ArgChile]. Credit: 'Southern Patagonian Ice Field border', by [Janitoalevic][WU_Janitoalevic], [CC-BY-SA-4.0][CC-BY-SA-4].*
@@ -87,7 +83,10 @@ and this determines the stream network and sub-basin structure. It is not a stra
 You can see the resultant stream network and sub-basins for a variety of values on the map (1, 2 and 5 million), as well as 'ground-truth' state-provided survey layers for comparison. The area zones were calculated based on an initiation of 5M. Looking again at the survey layers for comparison, it seems a smaller threshold would have been more appropriate. 
 
 ### Pour point
+The pour point is another important, sensitive parameter. Especially when using high resolution DEMs, when a slight change can result in empty or confusing result sets.  
+
 Conceptually, the pour point would be at the confluence of the Felber and Salzach. But, here it is placed on the Felber slightly upstream of where they meet. The reason for this is that the upslope area would otherwise include the catchment of the Salzach also.  
+
 ![Pour Point](assets/pour-point.png)  
 📷 *Remember, this point is rasterized to a grid cell - keep in mind the cell size, and that it doesn't fall into the same cell as the actual confluence.*
 
@@ -95,13 +94,20 @@ Conceptually, the pour point would be at the confluence of the Felber and Salzac
 The fill sinks step guarantees there is a continuous, downslope path for every cell in an area. Without this, it would result in a patchy, disconnected stream network.
 None of the subsequent calculations would then make sense.
 
+### Q: *What are some of the limitations of this model?*
+* Groundwater is not considered, but can be a major contributor to a catchment's stream network.
+* Slope and land cover are not considered either. These are also major factors in downslope flow.
+* The model assumes uniform rainfall over the entire catchment. The larger the catchment, the less reliable this is.
+* The bin size of upslope distance used to model the unit hydrograph is another sensitive parameter. Reducing it could delineate further the high-risk areas, but make it harder to interpret for wide-area planning decisions.  
+
 </div>
 <div class="image lm-sticky">
     <iframe src="map/index.html"></iframe>
 </div>
 </section>
 
-
+<section class="spotlight style1 onscroll-content-fade-in">
+<div class="content" markdown="1">
 
 ## Challenges and Tips
 Here are some challenges and tips should you wish to take a similar approach.
@@ -119,11 +125,17 @@ Here are some challenges and tips should you wish to take a similar approach.
 * It was pretty unstable - 50% of the time it would fail to export or preview, with error `AttributeError: 'QgsFillSymbol' object has no attribute 'width'`. This would put QGIS in an unstable state - it would look like it was hanging, and that a restart was needed. But, you can still operate it, despite the cursor saying otherwise, and attempt exporting again without losing your settings. Will follow up on this issue when possible.
 * Fortunately, the layers for this map ended up a totalling only a few MB. So, they could just be served as regular files. Working with larger datasets would mean hosting the layers in e.g. GeoServer, which would mean additional work.
 
+
+
+
 ### General
-Taking this approach was a significant undertaking, given my unfamiliarity with the geographical concepts and QGIS tools. For someone in a similar position, expect to take days rather than hours for this task.
+Given my unfamiliarity with the geographical concepts and QGIS tools before starting this, this approach was a significant undertaking. For anyone else in a similar position, expect to take days rather than hours for this task.
 
 ### QGIS Project
 TODO
+
+</div>
+</section>
 
 
 [A_Terrain]: https://storymaps.arcgis.com/stories/ddce6eed1f314759a852f629656dbdf8
