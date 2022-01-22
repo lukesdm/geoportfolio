@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SAGA_METADATA>
+  <HISTORY saga-version="2.3.2">
+    <MODULE library="grid_tools" id="0" name="Resampling">
+      <OPTION type="grid_system" id="PARAMETERS_GRID_SYSTEM" name="Grid system">
+        <CELLSIZE>5</CELLSIZE>
+        <XMIN>379107</XMIN>
+        <XMAX>392277</XMAX>
+        <YMIN>220089</YMIN>
+        <YMAX>243789</YMAX>
+      </OPTION>
+      <OPTION type="boolean" id="KEEP_TYPE" name="Preserve Data Type">TRUE</OPTION>
+      <OPTION type="choice" id="SCALE_UP" name="Upscaling Method" index="0">Nearest Neighbour</OPTION>
+      <OPTION type="choice" id="SCALE_DOWN" name="Downscaling Method" index="3">B-Spline Interpolation</OPTION>
+      <OPTION type="choice" id="TARGET_DEFINITION" name="Target Grid System" index="0">user defined</OPTION>
+      <OPTION type="double" id="TARGET_USER_SIZE" name="Cellsize">20.000000</OPTION>
+      <OPTION type="double" id="TARGET_USER_XMIN" name="Left">379104.500000</OPTION>
+      <OPTION type="double" id="TARGET_USER_XMAX" name="Right">392264.500000</OPTION>
+      <OPTION type="double" id="TARGET_USER_YMIN" name="Bottom">220086.500000</OPTION>
+      <OPTION type="double" id="TARGET_USER_YMAX" name="Top">243786.500000</OPTION>
+      <OPTION type="choice" id="TARGET_USER_FITS" name="Fit" index="1">cells</OPTION>
+      <INPUT_LIST type="grid_list" id="INPUT" name="Grids" system="PARAMETERS_GRID_SYSTEM">
+        <DEMclipped2unfilled type="grid_list" id="INPUT" name="Grids" system="PARAMETERS_GRID_SYSTEM">
+          <FILE>C:/Users/luke/AppData/Local/Temp/processing_oEKGZm/7632fae2d2044bf5b345ca5da2247454/DEMclipped2unfilled.sgrd</FILE>
+        </DEMclipped2unfilled>
+      </INPUT_LIST>
+      <OUTPUT type="grid_list" id="OUTPUT" name="Output">DEMclipped2unfilled</OUTPUT>
+    </MODULE>
+  </HISTORY>
+  <SOURCE>
+    <FILE>G:\My Drive\Master CDE\Methods in Spatial Analysis\Exercise 5\DEM_clipped2_unfilled_20m.sgrd</FILE>
+    <DATABASE></DATABASE>
+    <PROJECTION>
+      <OGC_WKT>PROJCS["unnamed",GEOGCS["Unknown datum based upon the Bessel 1841 ellipsoid",DATUM["Not_specified_based_on_Bessel_1841_ellipsoid",SPHEROID["Bessel 1841",6377397.155,299.1528128000033,AUTHORITY["EPSG","7004"]],AUTHORITY["EPSG","6004"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4004"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",13.3333333333333],PARAMETER["scale_factor",1],PARAMETER["false_easting",450000],PARAMETER["false_northing",-5000000],UNIT["metre",1,AUTHORITY["EPSG","9001"]]]</OGC_WKT>
+      <PROJ4>+proj=tmerc +a=6377397.155000 +b=6356078.962818 +lat_0=0 +lon_0=13.3333333333333 +k_0=1 +x_0=450000 +y_0=-5000000 +no_defs</PROJ4>
+      <EPSG>-1</EPSG>
+    </PROJECTION>
+  </SOURCE>
+  <DESCRIPTION></DESCRIPTION>
+</SAGA_METADATA>
