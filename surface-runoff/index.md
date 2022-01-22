@@ -21,13 +21,40 @@ Luke McQuade, January 2022
 <div class="content" markdown="1">
 
 ## Introduction
-The [previous assignment][Asgmnt_Terrain] (needs login) covered some terrain analyis around the town of Mittersill, Salzburg, where the river Felber meets the Salzach.
+The [previous assignment][Asgmnt_Terrain] covered some terrain analysis around the town of Mittersill, Salzburg, where the river Felber meets the Salzach.
 
-Here, some basic hydrological analysis is performed, using [QGIS](TODO) and the integrated [SAGA](QGIS_SAGA) tools.
+Here, some basic hydrological analysis of the area is performed, using [QGIS](TODO) and the integrated [SAGA](QGIS_SAGA) tools.
 
-Per the [exercise guidance](TODO) (needs login?), the idea is to create a rough flow model based on the upslope distance for the given pour point, i.e. rainfall at equal upslope distances reaches the outflow at the same time. Based on its distribution, an approximate unit hydrograph can be created.
+*If any of these hydrology terms are not familiar, the Stream Sense ['What Is A Catchment'][NZ_Guide] from Waikato Regional Council, New Zealand, seems to be a great guide.*
+
+Per the [exercise guidance][Ex], the task is to create a rough flow model based on the upslope distance for the given pour point, i.e. rainfall at equal upslope distances reaches the outflow at the same time. Based on its distribution, an approximate unit hydrograph can be created.
+
+## Method
+The main steps involved in creating this type of flow model are:
+1. Preprocess the DEM by sink-filling.
+2. Generate a flow accumulation surface.
+3. Create a channel network and basins.
+4. Calculate a surface of the upslope distance from pour point.
+
+A [hydrology QGIS tutorial][QGIS_Hydro] is available, which covers most of these steps. Please refer to this for details on steps 1 to 3. 
+
+The [D8][D8] flow direction algorithm was used throughout.
+
+### Calculating upslope distance from pour point
+There doesn't seem to be a tool in QGIS explictly designed for this, but it can be achieved with an unconventional use of the [*Overland flow distance to channel network*][SAGA_OverlandFlow] operation. This expects a channel network raster layer to be fed into it. Instead, create a single pixel raster of the pour point, and use that in its place.
+
+### Topo-flow Model
+The QGIS ModelBuilder was used to develop a repeatable workflow of calculating the flow model, named 'Topo-flow'.
+
+[![Topo-flow model](assets/topo-flow-screen.jpg)](assets/topo-flow-export.pdf)
+📷 *A screenshot of the model. The model is saved in the [QGIS project](#QGIS-project).*
+
+### Further processing
+Once the upslope distance surface had been created, which was continuous over the range 0 to ~22000m, it was binned by 1000m, and area zones were created from the binned surface. These zones correspond to the bins in the unit hydrograph.  
 
 ## Results
+
+The 
 
 ![Histogram](assets/area-zone-histogram.jpg)
 TODO: explain
@@ -36,29 +63,14 @@ TODO: explain
 
 
 
-The land can be zoned accordingly. The map shows.  
-
-
-
-
-
-
 ### Q: *What are some of the limitations of this model?*
 * No groundwater
 * No slope, land cover
 * The larger the area, the less reliable (uniform rainfall) 
 
-## Method
 
-The main steps involved in creating this type of flow model are:
-1. Preprocess the DEM by sink-filling.
-2. Generate a flow accumulation surface.
-3. Create a channel network and basins.
-4. Calculate the upslope distance from pour point surface.
 
-A [hydrology QGIS tutorial][QGIS_Hydro] that covers most of these steps was found, and followed. Please see that guide for details on steps 1 to 3. It wasn't straight-forward due to version differences and specifics of the input data (see [Tips](#Tips)).
 
-The D8 downslope accumulator algorithm was used throughout.
 
 ### DEM selection
 Salzburg has freely available digital terrain models (DTMs) of the entire state down to 1m resolution. Initially a DTM of 5m meters was chosen. However, this seemed to be *too* fine - the  tools model channels as single-cell-width (raster) and lines (vector), and in reality the streams in the study area were wider than this.  
@@ -70,16 +82,13 @@ Resampling the DEM to 20m gave much better results.
 ### Study area
 You will notice from the map the irregular shape of the study area. This is due to the DEM being avaialble for the state of Salzburg, and so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed (see, for example, some of the [Argentina-Chile border disputes][ArgChile]). For a more accurate assessment, the DEM should be patched with data from the surrounding areas.  
 
-### Calculating upslope distance from pour point
-There doesn't seem to be a tool in QGIS explictly designed for this, but it can be achieved with an unconventional use of the [*Overland flow distance to channel network*][SAGA_OverlandFlow] operation. This expects a channel network raster layer to be fed into it. Instead, create a single pixel raster of the pour point, and use that in its place.
+
 
 ### Pour point
 Conceptually, the pour point would be at the confluence of the Felber and Salzach. But, here it is placed on the Felber slightly upstream of where they meet. The reason for this is that the upslope area would otherwise include the catchment of the Salzach also.  
 ![Pour Point](assets/pour-point.png)  
 📷 *Remember, this point is rasterized to a grid cell - keep in mind the cell size, and that it doesn't fall into the same cell as the actual confluence.*
 
-### Topo-flow Model
-The QGIS ModelBuilder was used to automate the process of calculating the flow model.
 
 ### Q: *What is the significance of the channel initiation threshold?*
 The channel initiation threshold is probably the most important parameter of the model. It is the value of flow accumulation at which a cell is designated a channel/stream,
@@ -119,13 +128,15 @@ TODO
 
 
 ## Resources
-A nicely presented guide to the hydrological concepts in play here e.g. catchments, sub-basins, stream order. (TODO)
 
-QGIS guide on this (TODO)
+### QGIS Project
+TODO
 
 
 [Asgmnt_Terrain]: https://storymaps.arcgis.com/stories/ddce6eed1f314759a852f629656dbdf8
 [Ex]: https://zgis.maps.arcgis.com/apps/MapJournal/index.html?appid=9c54cf4d43e240d983470fd961de7cb2
+[D8]: https://rivix.com/Topics/D8_vs_Dinf.php
+[NZ_Guide]: https://www.waikatoregion.govt.nz/assets/WRC/WRC-2019/stream-sense-understanding.pdf
 [QGIS_Hydro]:https://docs.qgis.org/3.16/en/docs/training_manual/processing/hydro.html
 [SAGA_QGIS]: https://docs.qgis.org/3.16/en/docs/training_manual/processing/first_saga_alg.html
 [SAGA_OverlandFlow]: http://www.saga-gis.org/saga_tool_doc/2.3.0/ta_channels_4.html
