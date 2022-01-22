@@ -4,6 +4,7 @@ layout: story
 
 <section class="banner style1 orient-right fullscreen">
 <div class="content" markdown="1">
+
 # Surface Runoff
 ## Methods in Spatial Analysis
 ## Assignment #5
@@ -15,7 +16,9 @@ Luke McQuade, January 2022
 
 </div>
 <div class="image" markdown="1">
+
 ![rainy hilly road](assets/vlad-bagacian-serbia-resized.jpg)
+
 </div>
 </section>
 
@@ -76,7 +79,7 @@ Resampling the DEM to 20m gave much better results.
 ### Study area
 You will notice from the map the irregular shape of the study area. This is due to the DEM being for the state of Salzburg only, so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed*. For a more accurate assessment, the DEM should be patched with data from the surrounding areas.
 
-[![Patagonia disputed border](assets\southern-patagonian-ice-field-border.png)][WA_PB]  
+[![Patagonia disputed border](assets/southern-patagonian-ice-field-border.png)][WA_PB]  
 📷 **For example, see some of the [Argentina-Chile border disputes][ArgChile]. Credit: 'Southern Patagonian Ice Field border', by [Janitoalevic][WU_Janitoalevic], [CC-BY-SA-4.0][CC-BY-SA-4].*
 
 ### Channel initiation threshold
