@@ -53,24 +53,20 @@ The QGIS ModelBuilder was used to develop a repeatable workflow of calculating t
 Once the upslope distance surface had been created, which was continuous over the range 0 to ~22000m, it was binned by 1000m, and area zones were created from the binned surface. These zones correspond to the bins in the unit hydrograph.  
 
 ## Results
+The calculated stream network, sub-basins and area zones within the catchment are shown on the map.
 
-The 
+[![Histogram](assets/area-zone-histogram.jpg)](assets/area-zone-histogram.pdf)
+📷 *The histogram of the upslope distance from pour point, 1000m bins. In our model, this is the unit hydrograph for the catchment of the Felber.*
 
-![Histogram](assets/area-zone-histogram.jpg)
-TODO: explain
-
+## Discussion
 ### Q: *What are the most critical zones in the catchment area, and how might land cover/use decisions influence the risk of floods?*
 
-
+The peaks in the histogram represent the largest areas of similar distance, and hence contribution to flow. Deforestation leads to less absorption of rain by root systems, so clear-cutting in the areas would have the greatest adverse impact on flood risk. Similarly, soil-sealing inhibits natural drainage, so building on these areas is a further land use change that would negatively affect flood risk. The symbology was chosen accordingly: Green = low impact on flood risk, red = high impact on flood risk.
 
 ### Q: *What are some of the limitations of this model?*
 * No groundwater
 * No slope, land cover
 * The larger the area, the less reliable (uniform rainfall) 
-
-
-
-
 
 ### DEM selection
 Salzburg has freely available digital terrain models (DTMs) of the entire state down to 1m resolution. Initially a DTM of 5m meters was chosen. However, this seemed to be *too* fine - the  tools model channels as single-cell-width (raster) and lines (vector), and in reality the streams in the study area were wider than this.  
@@ -80,15 +76,14 @@ Salzburg has freely available digital terrain models (DTMs) of the entire state 
 Resampling the DEM to 20m gave much better results.
 
 ### Study area
-You will notice from the map the irregular shape of the study area. This is due to the DEM being avaialble for the state of Salzburg, and so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed (see, for example, some of the [Argentina-Chile border disputes][ArgChile]). For a more accurate assessment, the DEM should be patched with data from the surrounding areas.  
+You will notice from the map the irregular shape of the study area. This is due to the DEM being avaialble for the state of Salzburg, and so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed. For a more accurate assessment, the DEM should be patched with data from the surrounding areas.
 
-
+(for example, see some of the [Argentina-Chile border disputes][ArgChile]).   
 
 ### Pour point
 Conceptually, the pour point would be at the confluence of the Felber and Salzach. But, here it is placed on the Felber slightly upstream of where they meet. The reason for this is that the upslope area would otherwise include the catchment of the Salzach also.  
 ![Pour Point](assets/pour-point.png)  
 📷 *Remember, this point is rasterized to a grid cell - keep in mind the cell size, and that it doesn't fall into the same cell as the actual confluence.*
-
 
 ### Q: *What is the significance of the channel initiation threshold?*
 The channel initiation threshold is probably the most important parameter of the model. It is the value of flow accumulation at which a cell is designated a channel/stream,
@@ -106,28 +101,25 @@ None of the subsequent calculations would then make sense.
 </section>
 
 
-## Notes
 
-
-## Tips
-Here are some tips should you wish to attempt something similar.
+## Challenges and Tips
+Here are some challenges and tips should you wish to take a similar approach.
 
 ### QGIS
 * The tools often don't communicate problems very clearly, i.e. silent fails. Often this is due to an issue with the input data or parameters*, but use the latest LTS version of QGIS to rule out major software bugs. (I started out with v3.20, and then moved back to v3.16.)
 * *Check the default values make sense for your input, e.g. cell size 'Not Set' (meaning 'guess from input') vs 0.0.
+* Some issues were due to processes not assigning the CRS of the input to the output. (Hence the many CRS assignments in the Topo-flow model.) 
 * For similar reasons, when using the model builder, don't try do too much at once - test frequently.
 
 ### qgis2web
 [qgis2web](TODO) was used to create the above Leaflet map. I was *very* happy with the results. But, I encountered some issues:
 * It doesn't support layer grouping (See issue [#989](https://github.com/tomchadwin/qgis2web/issues/989)).
-* The rendering of composite styles (patterns etc.) is hit and miss.
+* The rendering of composite styles (patterns etc.) is hit and miss. Notice the cross-hatch colour in the zones layer doesn't match the desired colour (shown correctly in the legend).
 * It was pretty unstable - 50% of the time it would fail to export or preview, with error `AttributeError: 'QgsFillSymbol' object has no attribute 'width'`. This would put QGIS in an unstable state - it would look like it was hanging, and that a restart was needed. But, you can still operate it, despite the cursor saying otherwise, and attempt exporting again without losing your settings. Will follow up on this issue when possible.
+* Fortunately, the layers for this map ended up a totalling only a few MB. So, they could just be served as regular files. Working with larger datasets would mean hosting the layers in e.g. GeoServer, which would mean additional work.
 
 ### General
-TODO
-
-
-## Resources
+Taking this approach was a significant undertaking, given my unfamiliarity with the geographical concepts and QGIS tools. For someone in a similar position, expect to take days rather than hours for this task.
 
 ### QGIS Project
 TODO
