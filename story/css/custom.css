@@ -21,6 +21,24 @@ ul {
   list-style-position: inside;
 }
 
+.content img {
+  max-width: 100%;
+}
+
+/* Re-set some basic styles for markdown outside of section blocks */
+#wrapper > h1,
+#wrapper > h2,
+#wrapper > h3,
+#wrapper > h4,
+#wrapper > h5,
+#wrapper > h6,
+#wrapper > p,
+#wrapper > p > img {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width:100%
+}
+
 @media only screen and (min-width: 851px) {
   .lm-sticky {
     position: sticky;
