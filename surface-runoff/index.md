@@ -21,9 +21,9 @@ Luke McQuade, January 2022
 <div class="content" markdown="1">
 
 ## Introduction
-The [previous assignment][Asgmnt_Terrain] covered some terrain analysis around the town of Mittersill, Salzburg, where the river Felber meets the Salzach.
+The [previous assignment][A_Terrain] covered some terrain analysis around the town of Mittersill, Salzburg, where the river Felber meets the Salzach.
 
-Here, some basic hydrological analysis of the area is performed, using [QGIS](TODO) and the integrated [SAGA](QGIS_SAGA) tools.
+Here, some basic hydrological analysis of the area is performed, using [QGIS][QGIS] and the integrated [SAGA][QGIS_SAGA] tools.
 
 *If any of these hydrology terms are not familiar, the Stream Sense ['What Is A Catchment'][NZ_Guide] from Waikato Regional Council, New Zealand, seems to be a great guide.*
 
@@ -44,7 +44,7 @@ The [D8][D8] flow direction algorithm was used throughout.
 There doesn't seem to be a tool in QGIS explictly designed for this, but it can be achieved with an unconventional use of the [*Overland flow distance to channel network*][SAGA_OverlandFlow] operation. This expects a channel network raster layer to be fed into it. Instead, create a single pixel raster of the pour point, and use that in its place.
 
 ### Topo-flow Model
-The QGIS ModelBuilder was used to develop a repeatable workflow of calculating the flow model, named 'Topo-flow'.
+The QGIS ModelBuilder was used to develop a repeatable workflow for calculating the flow model, named 'Topo-flow'.
 
 [![Topo-flow model](assets/topo-flow-screen.jpg)](assets/topo-flow-export.pdf)
 📷 *A screenshot of the model. The model is saved in the [QGIS project](#QGIS-project).*
@@ -71,24 +71,25 @@ The peaks in the histogram represent the largest areas of similar distance, and 
 ### DEM selection
 Salzburg has freely available digital terrain models (DTMs) of the entire state down to 1m resolution. Initially a DTM of 5m meters was chosen. However, this seemed to be *too* fine - the  tools model channels as single-cell-width (raster) and lines (vector), and in reality the streams in the study area were wider than this.  
 ![5m](assets/fine-dem.png)  
-📷*This resulted in multiple channels for the same feature, and a confusing stream network and results of subsequent calculations.*
+📷*This resulted in multiple channels for the same feature, and a confusing stream network and results of subsequent calculations. You can also see the effects here of choosing a low  [channel initiation threshold](#channel-initiation-threshold)*
 
 Resampling the DEM to 20m gave much better results.
 
 ### Study area
-You will notice from the map the irregular shape of the study area. This is due to the DEM being avaialble for the state of Salzburg, and so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed. For a more accurate assessment, the DEM should be patched with data from the surrounding areas.
+You will notice from the map the irregular shape of the study area. This is due to the DEM being avaialble for the state of Salzburg, and so the study area follows the state boundaries present in this relatively narrow part of the state. While state boundaries are often along ridges, that does not necessarily divide the watershed*. For a more accurate assessment, the DEM should be patched with data from the surrounding areas.
 
-(for example, see some of the [Argentina-Chile border disputes][ArgChile]).   
+[![Patagonia disputed border](assets\southern-patagonian-ice-field-border.png)][WA_PB]  
+📷 **For example, see some of the [Argentina-Chile border disputes][ArgChile]. Credit: 'Southern Patagonian Ice Field border', by [Janitoalevic][WU_Janitoalevic], [CC-BY-SA-4.0][CC-BY-SA-4].*
+
+### Channel initiation threshold
+The channel initiation threshold is probably the most important parameter of the model. It is the value of flow accumulation at which a cell is designated a channel/stream,
+and this determines the stream network and sub-basin structure. It is not a straight-forward parameter to 'guess' - it depends on the cell size, terrain, study area and use case.
+You can see the resultant stream network and sub-basins for a variety of values on the map (1, 2 and 5 million), as well as 'ground-truth' state-provided survey layers for comparison. The area zones were calculated based on an initiation of 5M. Looking again at the survey layers for comparison, it seems a smaller threshold would have been more appropriate. 
 
 ### Pour point
 Conceptually, the pour point would be at the confluence of the Felber and Salzach. But, here it is placed on the Felber slightly upstream of where they meet. The reason for this is that the upslope area would otherwise include the catchment of the Salzach also.  
 ![Pour Point](assets/pour-point.png)  
 📷 *Remember, this point is rasterized to a grid cell - keep in mind the cell size, and that it doesn't fall into the same cell as the actual confluence.*
-
-### Q: *What is the significance of the channel initiation threshold?*
-The channel initiation threshold is probably the most important parameter of the model. It is the value of flow accumulation at which a cell is designated a channel/stream,
-and this determines the stream network and sub-basin structure. It is not a straight-forward parameter to 'guess' - it depends on the cell size, terrain, study area and use case.
-You can see the resultant stream network and sub-basins for a variety of values on the map (1, 2 and 5 million), as well as 'ground-truth' state-provided survey layers for comparison. The area zones were calculated based on an initiation of 5M. Looking again at the survey layers for comparison, it seems a smaller threshold would have been more appropriate. 
 
 ### Q: *What are the effects if the 'Fill sinks' step is not performed?*
 The fill sinks step guarantees there is a continuous, downslope path for every cell in an area. Without this, it would result in a patchy, disconnected stream network.
@@ -112,7 +113,7 @@ Here are some challenges and tips should you wish to take a similar approach.
 * For similar reasons, when using the model builder, don't try do too much at once - test frequently.
 
 ### qgis2web
-[qgis2web](TODO) was used to create the above Leaflet map. I was *very* happy with the results. But, I encountered some issues:
+[qgis2web][QGIS_2Web] was used to create the above Leaflet map. I was *very* happy with the results, considering how much coding time would otherwise have been required. But, here are some of the issues I encountered:
 * It doesn't support layer grouping (See issue [#989](https://github.com/tomchadwin/qgis2web/issues/989)).
 * The rendering of composite styles (patterns etc.) is hit and miss. Notice the cross-hatch colour in the zones layer doesn't match the desired colour (shown correctly in the legend).
 * It was pretty unstable - 50% of the time it would fail to export or preview, with error `AttributeError: 'QgsFillSymbol' object has no attribute 'width'`. This would put QGIS in an unstable state - it would look like it was hanging, and that a restart was needed. But, you can still operate it, despite the cursor saying otherwise, and attempt exporting again without losing your settings. Will follow up on this issue when possible.
@@ -125,11 +126,16 @@ Taking this approach was a significant undertaking, given my unfamiliarity with 
 TODO
 
 
-[Asgmnt_Terrain]: https://storymaps.arcgis.com/stories/ddce6eed1f314759a852f629656dbdf8
+[A_Terrain]: https://storymaps.arcgis.com/stories/ddce6eed1f314759a852f629656dbdf8
 [Ex]: https://zgis.maps.arcgis.com/apps/MapJournal/index.html?appid=9c54cf4d43e240d983470fd961de7cb2
+[QGIS]: https://qgis.org/en/site/ 
 [D8]: https://rivix.com/Topics/D8_vs_Dinf.php
 [NZ_Guide]: https://www.waikatoregion.govt.nz/assets/WRC/WRC-2019/stream-sense-understanding.pdf
-[QGIS_Hydro]:https://docs.qgis.org/3.16/en/docs/training_manual/processing/hydro.html
-[SAGA_QGIS]: https://docs.qgis.org/3.16/en/docs/training_manual/processing/first_saga_alg.html
+[QGIS_Hydro]: https://docs.qgis.org/3.16/en/docs/training_manual/processing/hydro.html
+[QGIS_2Web]: https://plugins.qgis.org/plugins/qgis2web/
+[QGIS_SAGA]: https://docs.qgis.org/3.16/en/docs/training_manual/processing/first_saga_alg.html
 [SAGA_OverlandFlow]: http://www.saga-gis.org/saga_tool_doc/2.3.0/ta_channels_4.html
-[ArgChile]:https://en.wikipedia.org/wiki/Boundary_Treaty_of_1881_between_Chile_and_Argentina#Further_disputes
+[CC-BY-SA-4]: https://creativecommons.org/licenses/by-sa/4.0/
+[WA_PB]: https://en.wikipedia.org/wiki/File:Southern_Patagonian_Ice_Field_border.svg
+[WU_Janitoalevic]: https://commons.wikimedia.org/wiki/User:Janitoalevic
+[ArgChile]: https://en.wikipedia.org/wiki/Boundary_Treaty_of_1881_between_Chile_and_Argentina#Further_disputes
