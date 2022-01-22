@@ -49,7 +49,7 @@ There doesn't seem to be a tool in QGIS explictly designed for this, but it can 
 The QGIS ModelBuilder was used to develop a repeatable workflow for calculating the flow model, named 'Topo-flow'.
 
 [![Topo-flow model](assets/topo-flow-screen.jpg)](assets/topo-flow-export.pdf)
-📷 *A screenshot of the model. The model is saved in the [QGIS project](#QGIS-project).*
+📷 *A screenshot of the model. The model is saved in the [QGIS project](#Source).*
 
 ### Further processing
 Once the upslope distance surface had been created, which was continuous over the range 0 to ~22000m, it was binned by 1000m, and area zones were created from the binned surface. These zones correspond to the bins in the unit hydrograph.  
@@ -130,8 +130,11 @@ Here are some challenges and tips should you wish to take a similar approach.
 ![QGIS map sample](assets/qgis-map-sample.jpg)  
 📷 *Desired map symbology.*
 
-### QGIS Project
-TODO
+### Source
+The QGIS project and associated data can be found in the [`qgis-project`][Proj] folder.
+
+[Go to source][Source].
+
 
 </div>
 </section>
@@ -150,3 +153,5 @@ TODO
 [WA_PB]: https://en.wikipedia.org/wiki/File:Southern_Patagonian_Ice_Field_border.svg
 [WU_Janitoalevic]: https://commons.wikimedia.org/wiki/User:Janitoalevic
 [ArgChile]: https://en.wikipedia.org/wiki/Boundary_Treaty_of_1881_between_Chile_and_Argentina#Further_disputes
+[Proj]: https://github.com/lukesdm/geoportfolio/tree/main/surface-runoff/qgis-project
+[Source]: https://github.com/lukesdm/geoportfolio/tree/main/surface-runoff
