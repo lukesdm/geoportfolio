@@ -11,6 +11,8 @@ layout: story
 
 Luke McQuade, January 2022
 
+📷 *Photo by [Vlad Bagacian](https://unsplash.com/@vladbagacian?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/s/photos/mountain-rain?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)* 
+
 </div>
 <div class="image" markdown="1">
 ![rainy hilly road](assets/vlad-bagacian-serbia-resized.jpg)
@@ -127,10 +129,6 @@ Here are some challenges and tips should you wish to take a similar approach.
 
 ![QGIS map sample](assets/qgis-map-sample.jpg)  
 📷 *Desired map symbology.*
-
-
-### General
-Given my unfamiliarity with the geographical concepts and QGIS tools before starting this, this approach was a significant undertaking. For anyone else in a similar position, expect to take days rather than hours for this task.
 
 ### QGIS Project
 TODO
