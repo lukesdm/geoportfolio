@@ -98,7 +98,7 @@ None of the subsequent calculations would then make sense.
 * Groundwater is not considered, but can be a major contributor to a catchment's stream network.
 * Slope and land cover are not considered either. These are also major factors in downslope flow.
 * The model assumes uniform rainfall over the entire catchment. The larger the catchment, the less reliable this is.
-* The bin size of upslope distance used to model the unit hydrograph is another sensitive parameter. Reducing it could delineate further the high-risk areas, but make it harder to interpret for wide-area planning decisions.  
+* The bin size of upslope distance used to model the unit hydrograph is another sensitive parameter. Reducing it could delineate further the high-risk areas, but make it harder to interpret for large-area planning decisions.  
 
 </div>
 <div class="image lm-sticky">
@@ -125,7 +125,8 @@ Here are some challenges and tips should you wish to take a similar approach.
 * It was pretty unstable - 50% of the time it would fail to export or preview, with error `AttributeError: 'QgsFillSymbol' object has no attribute 'width'`. This would put QGIS in an unstable state - it would look like it was hanging, and that a restart was needed. But, you can still operate it, despite the cursor saying otherwise, and attempt exporting again without losing your settings. Will follow up on this issue when possible.
 * Fortunately, the layers for this map ended up a totalling only a few MB. So, they could just be served as regular files. Working with larger datasets would mean hosting the layers in e.g. GeoServer, which would mean additional work.
 
-
+![QGIS map sample](assets/qgis-map-sample.jpg)  
+📷 *Desired map symbology.*
 
 
 ### General
