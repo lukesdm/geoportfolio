@@ -7,8 +7,6 @@ layout: story
 
 # Surface Runoff
 ## Methods in Spatial Analysis
-## Assignment #5
-
 
 Luke McQuade, January 2022
 
