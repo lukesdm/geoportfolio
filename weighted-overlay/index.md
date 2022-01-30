@@ -190,8 +190,53 @@ Again, OSM was consulted for forested areas. However, the woodland type was not 
 
 Fortunately in 2021, Space Intelligence with NatureScot released a [land cover dataset][SILandCov] with 20m spatial resolution, discriminating coniferous, deciduous broadleaf, and mixed forest. This also features built-up and inland water, which are useful for the other criteria in our analysis.
 
-*A fully comprehensive source of forestry data was discovered later in the investigation - the Forestry Commission's [National Forest Inventory][ForInv].* 
+*A fully comprehensive source of forestry data was discovered later in the investigation - the Forestry Commission's [National Forest Inventory][ForInv].*  
 
+</div>
+</section>
+
+<section class="banner fullscreen style1">
+<div class="content" markdown="1">
+
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+## Results
+
+</div>
+<div class="image lm-sticky">
+    <iframe src="map/index.html"></iframe>
 </div>
 </section>
 
