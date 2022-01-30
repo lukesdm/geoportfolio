@@ -159,8 +159,8 @@ Given some of the factors discussed earlier, a model for suitable hammock-campin
 | Forest type: Deciduous Broadleaf | 1 | Most likely to have obstructing undergrowth.
 | Forest type: Coniferous | 4 | Most likely to have clear distance between trees.
 | Forest type: Mixed | 2 | Has characteristics of each of the above.
-| Within 5km of a supermarket | 0.5 | Access to supplies.
-| Within 2.5km of a pub | 0.5 | In case of emergencies (🍺).
+| Within 5km of a supermarket | 0.5 | Access to supplies, approx. 1hr one-way.
+| Within 2.5km of a pub | 0.5 | Access to beer, approx. 1hr round-trip.
 
 #### Not considered
 
