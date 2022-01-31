@@ -51,7 +51,7 @@ A region around the small, coastal city of Inverness in the Highlands is the foc
 ![Ascending Ben Nevis](assets/bn-asc-mcquade-sm.jpg)
 *Ascending Ben Nevis*
 
- Typical Highland scenery.
+ Typical Highland landscape.
 
 </section>
 <section>
@@ -243,6 +243,8 @@ Another rule: `0 / 0 = NoData`. This is useful to know when wanting to filter ou
 
 ### Source
 
+[QGIS project](inverness-qgis.zip) (a little messy).
+
 Go to [page source][Src].
 
 </div>
@@ -264,8 +266,8 @@ Go to [page source][Src].
 [SILandCov]: https://www.space-intelligence.com/2021/04/01/weve-just-published-the-first-ever-scotland-wide-high-resolution-habitat-maps-for-free/
 [ST]: https://twitter.com/spatialthoughts
 [MCOAGuide]: https://www.qgistutorials.com/en/docs/3/multi_criteria_overlay.html
-[BCSS]: TODO
+[BCSS]: https://github.com/lukesdm/geoportfolio/blob/main/weighted-overlay/map/css/custom.css
 [SOND]: https://gis.stackexchange.com/a/316249/197764
 [RN]: https://grass.osgeo.org/grass80/manuals/r.null.html
 [TD]: https://www.nature.com/articles/nature14967
-[Src]: TODO
+[Src]: https://github.com/lukesdm/geoportfolio/tree/main/weighted-overlay
