@@ -236,7 +236,7 @@ So, you'd probably end up with an empty result.
 Also, take care when rasterizing vectors - unset the 'Assign a specified nodata value' option to give empty areas a value of 0, so it can be used as an overlay.
 Another rule: `0 / 0 = NoData`. This is useful to know when wanting to filter out 0 values, e.g. ([source][SOND])  
 ```
-"layer@1" / ("layer@1" > 0)"
+"layer@1" / ("layer@1" > 0)
 ```
 
 [r.null][RN] can be used to go the other way, assigning 0 in place of NoData.
