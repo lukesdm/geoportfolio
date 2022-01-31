@@ -7,6 +7,12 @@ function buildLegend(entries) {
     return `<table>${entriesMarkup}</table>`
 }
 
+function addLegend(layerIndex, entries) {
+    const container =  document.querySelector(`div.leaflet-control-layers-overlays > label:nth-child(${layerIndex}) > div > span`);
+    container.innerHTML = container.innerHTML + buildLegend(makeEntriesForRaster(entries));
+    
+}
+
 let suitabilityEntries = [
     { color: "#FEDF9A", description: "1" },
     { color: "#F59053", description: "2" },
@@ -16,11 +22,11 @@ let suitabilityEntries = [
     { color: "#00FF00", description: "5" },
 ];
 
-function addLegend() {
-    entryIndex = 1; // TODO: Parameterize
-    const container =  document.querySelector(`div.leaflet-control-layers-overlays > label:nth-child(${entryIndex}) > div > span`);
-    container.innerHTML = container.innerHTML + buildLegend(makeEntriesForRaster(suitabilityEntries));
-    
-}
+let forestWeightEntries = [
+    { color: "#575757", description: "1 - Deciduous broadleaf" },
+    { color: "#A8A8A8", description: "2 - Mixed" },
+    { color: "#FFFFFF", description: "4 - Coniferous" },
+]
 
-addLegend();
+addLegend(1, suitabilityEntries);
+addLegend(7, forestWeightEntries);
