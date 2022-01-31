@@ -1,0 +1,23 @@
+.leaflet-pane.leaflet-pane_Supermarkets5kmBuffered_6-pane {
+    mix-blend-mode: overlay;
+}
+
+.leaflet-pane.leaflet-pane_Pubs2500mBuffered_7-pane {
+    mix-blend-mode: overlay;
+}
+
+.leaflet-pane.leaflet-pane_DistFromBuiltupOver100m_2-pane {
+    mix-blend-mode: multiply;
+}
+
+.leaflet-pane.leaflet-pane_DistFromWaterLT500m_3-pane {
+    mix-blend-mode: multiply;
+}
+
+.leaflet-pane.leaflet-pane_DistFromWW_10to100m_5-pane {
+    mix-blend-mode: multiply;
+}
+
+.leaflet-pane.leaflet-pane_ForestPreference_4-pane {
+    mix-blend-mode: multiply;
+}
