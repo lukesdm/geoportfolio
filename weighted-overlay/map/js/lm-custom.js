@@ -19,7 +19,7 @@ let suitabilityEntries = [
     { color: "#E9F025", description: "3" },
     { color: "#00DBA4", description: "4" },
     { color: "#00CC52", description: "4.5" },
-    { color: "#00FF00", description: "5" },
+    { color: "#00FF00", description: "5 (Best)" },
 ];
 
 let forestWeightEntries = [

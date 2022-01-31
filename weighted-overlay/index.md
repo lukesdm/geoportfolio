@@ -16,8 +16,8 @@ Finding suitable camping spots using weighted overlay analysis
 
 Luke McQuade, January 2022
 
-📷 *Flag: "Scotland Grunge Flag" by Free Grunge Textures - www.freestock.ca, CC BY 2.0*  
-*Banner: L. McQuade*
+📷 *Flag: "Scotland Grunge Flag" by Free Grunge Textures - www.freestock.ca, CC BY 2.0.*  
+*Banner and others: L. McQuade.*
 
 </div>
 </section>
@@ -40,7 +40,7 @@ That said, not all woodland is suitable for hanging a hammock:
 
 *See also, [Grand Trunk's guide to hammock safety][GTSafety].*
 
-A region around the small, coastal city of Inverness in the Highlands is the focus of this investigation. The area features rolling hills, and encompasses the famous Loch Ness and the Caledonian canal as it meets the North Sea. Weighted overlay analysis is performed using the built-in tools of QGIS.  
+A region around the small, coastal city of Inverness in the Highlands is the focus of this investigation. The area features rolling hills, and encompasses part of the famous Loch Ness and the Caledonian canal as it meets the North Sea. Weighted overlay analysis is performed using the built-in tools of QGIS.  
 
 </div>
 
@@ -49,20 +49,18 @@ A region around the small, coastal city of Inverness in the Highlands is the foc
 <section markdown="1">
 
 ![Ascending Ben Nevis](assets/bn-asc-mcquade-sm.jpg)
-
-Typical Highland scenery.
-
 *Ascending Ben Nevis*
+
+ Typical Highland scenery.
 
 </section>
 <section>
 <div class="inner" markdown="1">
 
 ![Ben Nevis plateau](assets/bn-top-mcquade-sm.jpg)
+*Summit of Ben Nevis*
 
 Surfaces that are unaccommodating for tents can appear flat on all but the highest-resolution elevation models.
-
-*Ben Nevis summit*
 
 </div>
 </section>
@@ -70,10 +68,20 @@ Surfaces that are unaccommodating for tents can appear flat on all but the highe
 <div class="inner" markdown="1">
 
 ![Sundew](assets/sundew-mcquade-sm.jpg)
+*Sundew*
 
 Likewise, wet ground can be problematic for tents.
 
-*Sundew*
+
+</div>
+</section>
+<section>
+<div class="inner" markdown="1">
+
+![Tent site](assets/tent-mcquade-sm.jpg)
+*Outside Drumnadrochit*
+
+Even so, there's still usually a place to pitch a tent by the end of the day.  
 
 </div>
 </section>
@@ -81,6 +89,7 @@ Likewise, wet ground can be problematic for tents.
 <div class="inner" markdown="1">
 
 ![Scots pine](assets/pine-mcquade-sm.jpg)
+*Scots pine, Beinn Eighe*
 
 Ancient [Caledonian forest][CalFor] can be a tempting destination, but extra care has to be taken in this delicate environment.
 
@@ -90,6 +99,7 @@ Ancient [Caledonian forest][CalFor] can be a tempting destination, but extra car
 <div class="inner" markdown="1">
 
 ![Potato cakes](assets/brekky-mcquade-sm.jpg)
+*Tatty scones*  
 
 Access to fresh supplies is always something to think about.  
 
@@ -99,8 +109,9 @@ Access to fresh supplies is always something to think about.
 <div class="inner" markdown="1">
 
 ![Cattle](assets/hc-mcquade-sm.jpg)
+*Highland cattle*  
 
-Dangers from wildlife are minimal, [for now][Rewilding].  
+Dangers from wildlife are minimal, [for now][Rewilding]. (Though still be [careful around cows][Cows].) 
 
 </div>
 </section>
@@ -108,29 +119,14 @@ Dangers from wildlife are minimal, [for now][Rewilding].
 <div class="inner" markdown="1">
 
 ![Caledonian Canal sea lock](assets/sealock-mcquade-sm.jpg)
+*The Inverness Sea Lock*
 
 The coastline of Scotland can be complex, so its not always obvious if water on the map is salt- or fresh-water in reality.  
 
 </div>
 </section>
-<section>
-<div class="inner" markdown="1">
 
-![TODO](assets/scotland-grunge.jpg)
 
-TODO.  
-
-</div>
-</section>
-<section>
-<div class="inner" markdown="1">
-
-![Tent site](assets/tent-mcquade-sm.jpg)
-
-After all that, there's still usually a place to pitch a tent by the end of the day.  
-
-</div>
-</section>
 </div>
 </div>
 </section>
@@ -143,6 +139,10 @@ After all that, there's still usually a place to pitch a tent by the end of the 
 
 Given some of the factors discussed earlier, a model for suitable hammock-camping spots can be created. There are some hard requirements that have to be fulfilled, and then preference or desirability can be considered. A final suitability rating of 1 to 5 is assigned.
 
+An approach similar to *[@spatialthoughts][ST]*' *[Multi Criteria Overlay Analysis guide][MCOAGuide]* was taken, mainly using the *Raster Calculator* and *Proximity (raster distance)* tools.
+
+### Model
+
 #### Essential
 
 | Criterion | Rationale
@@ -151,6 +151,7 @@ Given some of the factors discussed earlier, a model for suitable hammock-campin
 | At least 100m from built-up area | For discretion, and less likely to encroach on enclosed land.
 | At most 500m from water | For cooking and cleaning.
 | Within 100m of an accessible trail | Trekking through woodland can be difficult.
+| Not less than 10m from trail | For discretion, and to account for width of track.  
 
 #### Desirability
 
@@ -199,44 +200,51 @@ Fortunately in 2021, Space Intelligence with NatureScot released a [land cover d
 <div class="content" markdown="1">
 
 ## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
-## Results
+After performing the overlay analysis, a map showing suitable regions was created. Overlay layers for each of the criteria can be toggled to view the effects each has on the end result. (CSS blend modes were employed for this - see [custom.css][BCSS].)  
+
+### Limitations
+There are some shortcomings with the model, and in practice it's probably not very useful without further work. 
+* It's not just people's gardens that are out of bounds, plenty of private/protected forest is enclosed and inaccessible.
+* Forest type alone is not an accurate deciding factor - plenty of broadleaf woodland is suitably sparse, and coniferous unsuitably dense. Effectively, forest type was a proxy for tree density, which may be possible to determine more directly. See, e.g. [*Mapping tree density at a global scale (Crowther et al, Nature)*][TD].   
+* Features outside of the region of interest weren't taken into account, so assesments for distance-based criteria towards the boundary may be inaccurate.  
+* In remote areas, land designated as built-up may not be inhabited, e.g. bothys, leading to those surroundings being unnecessarily deemed unsuitable.
+* The on-foot accessibility of terrain wasn't really taken into account, e.g. distance calculations were simple straight-line calculations.
+
+![Unsuitable island](assets/island.png)
+📷 *This island in the middle of a loch was inappropriately deemed a suitable camping spot - it would be difficult to reach without a boat.*
+
+Some of these could be tackled in follow-up work using cost distance analysis.
 
 </div>
 <div class="image lm-sticky">
     <iframe src="map/index.html"></iframe>
+</div>
+</section>
+
+<section class="wrapper style1">
+<div class="inner" markdown="1">
+
+## Tips
+### No Data
+*NoData* can be troublesome when combining layers. It is coercive. For instance, a landcover layer may have NoData defined for sea areas within its extent. Have a raster layer for docked ships  in that area that you want to combine it with? In the raster calculator, these rules apply: 
+* `0 * 0 = 0`
+* `{anything} * NoData = NoData`
+* `{anything} + NoData = NoData`
+
+So, you'd probably end up with an empty result.
+
+Also, take care when rasterizing vectors - unset the 'Assign a specified nodata value' option to give empty areas a value of 0, so it can be used as an overlay.
+Another rule: `0 / 0 = NoData`. This is useful to know when wanting to filter out 0 values, e.g. ([source][SOND])  
+```
+"layer@1" / ("layer@1" > 0)"
+```
+
+[r.null][RN] can be used to go the other way, assigning 0 in place of NoData.
+
+### Source
+
+Go to [page source][Src].
+
 </div>
 </section>
 
@@ -247,8 +255,16 @@ Fortunately in 2021, Space Intelligence with NatureScot released a [land cover d
 [GTSafety]: https://www.grandtrunk.com/blogs/news/hammock-safety-where-to-hang
 [CalFor]: https://www.wildlifetrusts.org/habitats/woodland/caledonian-forest
 [Rewilding]: https://www.theguardian.com/environment/2021/sep/24/reintroducing-wolves-to-uk-could-hit-rewilding-support-expert-says
+[Cows]: https://scottishwildlifetrust.org.uk/2014/08/great-british-dangers/
 [OS]: https://ordnancesurvey.co.uk/
 [OSM]: https://www.openstreetmap.org/
 [OT]: https://overpass-turbo.eu/
 [ForInv]: https://data-forestry.opendata.arcgis.com/search?tags=Scotland
 [SILandCov]: https://www.space-intelligence.com/2021/04/01/weve-just-published-the-first-ever-scotland-wide-high-resolution-habitat-maps-for-free/
+[ST]: https://twitter.com/spatialthoughts
+[MCOAGuide]: https://www.qgistutorials.com/en/docs/3/multi_criteria_overlay.html
+[BCSS]: TODO
+[SOND]: https://gis.stackexchange.com/a/316249/197764
+[RN]: https://grass.osgeo.org/grass80/manuals/r.null.html
+[TD]: https://www.nature.com/articles/nature14967
+[Src]: TODO
