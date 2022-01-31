@@ -27,7 +27,7 @@ Luke McQuade, January 2022
 <div class="inner" markdown="1" style="padding-bottom: 0px">
 
 ## Introduction
-Scotland, unlike the rest of the United Kingdom, offers the right to roam and wild camp across the country's open land (with a few [restrictions][R2R])). This makes it a good place for ad-hoc outdoor adventures.  
+Scotland, unlike the rest of the United Kingdom, offers the right to roam and wild camp across the country's open land (with a few [restrictions][R2R]). This makes it a good place for ad-hoc outdoor adventures.  
 
 But, due to the rugged terrain and uneven ground, especially in the more rural areas, finding suitable camping spots is not always easy. Scotland does however, have the largest forest cover in the UK ([~18%, as of 2019][ForStrat]). Without detailed local knowledge, this makes the hammock the ideal choice for camping.
 
@@ -40,7 +40,7 @@ That said, not all woodland is suitable for hanging a hammock:
 
 *See also, [Grand Trunk's guide to hammock safety][GTSafety].*
 
-A region around the small, coastal city of Inverness in the Highlands is the focus of this investigation. The area features rolling hills, and encompasses part of the famous Loch Ness and the Caledonian canal as it meets the North Sea. Weighted overlay analysis is performed using the built-in tools of QGIS.  
+A region around the small, coastal city of Inverness in the Highlands is the focus of this investigation. The area features rolling hills, and encompasses part of the famous Loch Ness and the Caledonian Canal as it meets the [Beauly Firth][BF]. Weighted overlay analysis is performed using the built-in tools of QGIS.  
 
 </div>
 
@@ -119,7 +119,7 @@ Dangers from wildlife are minimal, [for now][Rewilding]. (Though still be [caref
 <div class="inner" markdown="1">
 
 ![Caledonian Canal sea lock](assets/sealock-mcquade-sm.jpg)
-*The Inverness Sea Lock*
+*Clachnaharry Sea Lock*
 
 The coastline of Scotland can be complex, so its not always obvious if water on the map is salt- or fresh-water in reality.  
 
@@ -251,6 +251,7 @@ Go to [page source][Src].
 
 
 [R2R]: https://www.heraldscotland.com/news/19459239.right-roam-work-scotland-differ-england/
+[BF]: https://en.wikipedia.org/wiki/Beauly_Firth
 [ForStrat]: https://www.gov.scot/publications/scotlands-forestry-strategy-20192029/pages/4/
 [GTSafety]: https://www.grandtrunk.com/blogs/news/hammock-safety-where-to-hang
 [CalFor]: https://www.wildlifetrusts.org/habitats/woodland/caledonian-forest
