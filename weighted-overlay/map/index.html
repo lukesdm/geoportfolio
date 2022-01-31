@@ -542,7 +542,7 @@
         bounds_group.addLayer(layer_Suitability2_WithAmenities_10);
         map.addLayer(layer_Suitability2_WithAmenities_10);
         var baseMaps = {};
-        L.control.layers(baseMaps,{"Suitability2_WithAmenities": layer_Suitability2_WithAmenities_10,'<img src="legend/Supermarkets_9.png" /> Supermarkets': layer_Supermarkets_9,'<img src="legend/Pubs_8.png" /> Pubs': layer_Pubs_8,"Pubs2500mBuffered": layer_Pubs2500mBuffered_7,"Supermarkets5kmBuffered": layer_Supermarkets5kmBuffered_6,"DistFromWW_10to100m": layer_DistFromWW_10to100m_5,"ForestPreference": layer_ForestPreference_4,"DistFromWaterLT500m": layer_DistFromWaterLT500m_3,"DistFromBuiltupOver100m": layer_DistFromBuiltupOver100m_2,'<img src="legend/StudyArea_1.png" /> StudyArea': layer_StudyArea_1,"TF Transport Dark": layer_TFTransportDark_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{"Camping spot rating": layer_Suitability2_WithAmenities_10,'<img src="legend/Supermarkets_9.png" /> Supermarkets': layer_Supermarkets_9,'<img src="legend/Pubs_8.png" /> Pubs': layer_Pubs_8,"Within 2.5km of pub": layer_Pubs2500mBuffered_7,"Within 5km of supermarket": layer_Supermarkets5kmBuffered_6,"10-100m from track": layer_DistFromWW_10to100m_5,"Forest type weighting": layer_ForestPreference_4,"Within 500m of water": layer_DistFromWaterLT500m_3,"Over 100m from buildings": layer_DistFromBuiltupOver100m_2,'<img src="legend/StudyArea_1.png" /> Region of interest': layer_StudyArea_1,"TF Transport Dark": layer_TFTransportDark_0,},{collapsed:false}).addTo(map);
         setBounds();
         L.ImageOverlay.include({
             getBounds: function () {
