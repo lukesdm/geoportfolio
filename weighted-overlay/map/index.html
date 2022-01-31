@@ -8,8 +8,6 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css/leaflet.css">
         <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-        <link rel="stylesheet" href="css/MarkerCluster.css">
-        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <style>
         html, body, #map {
             width: 100%;
@@ -32,7 +30,6 @@
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
-        <script src="js/leaflet.markercluster.js"></script>
         <script src="data/StudyArea_1.js"></script>
         <script src="data/Pubs_8.js"></script>
         <script src="data/Supermarkets_9.js"></script>
@@ -128,60 +125,54 @@
         });
         bounds_group.addLayer(layer_StudyArea_1);
         map.addLayer(layer_StudyArea_1);
-        map.createPane('pane_Supermarkets5kmBuffered_2');
-        map.getPane('pane_Supermarkets5kmBuffered_2').style.zIndex = 402;
-        var img_Supermarkets5kmBuffered_2 = 'data/Supermarkets5kmBuffered_2.png';
-        var img_bounds_Supermarkets5kmBuffered_2 = [[57.287331454495096,-4.6204044383463465],[57.67495123966822,-3.7316595952019194]];
-        var layer_Supermarkets5kmBuffered_2 = new L.imageOverlay(img_Supermarkets5kmBuffered_2,
-                                              img_bounds_Supermarkets5kmBuffered_2,
-                                              {pane: 'pane_Supermarkets5kmBuffered_2'});
-        bounds_group.addLayer(layer_Supermarkets5kmBuffered_2);
-        map.addLayer(layer_Supermarkets5kmBuffered_2);
-        map.createPane('pane_Pubs2500mBuffered_3');
-        map.getPane('pane_Pubs2500mBuffered_3').style.zIndex = 403;
-        var img_Pubs2500mBuffered_3 = 'data/Pubs2500mBuffered_3.png';
-        var img_bounds_Pubs2500mBuffered_3 = [[57.287331454495096,-4.6204044383463465],[57.67495123966822,-3.7316595952019194]];
-        var layer_Pubs2500mBuffered_3 = new L.imageOverlay(img_Pubs2500mBuffered_3,
-                                              img_bounds_Pubs2500mBuffered_3,
-                                              {pane: 'pane_Pubs2500mBuffered_3'});
-        bounds_group.addLayer(layer_Pubs2500mBuffered_3);
-        map.addLayer(layer_Pubs2500mBuffered_3);
-        map.createPane('pane_DistFromBuiltupOver100m_4');
-        map.getPane('pane_DistFromBuiltupOver100m_4').style.zIndex = 404;
-        var img_DistFromBuiltupOver100m_4 = 'data/DistFromBuiltupOver100m_4.png';
-        var img_bounds_DistFromBuiltupOver100m_4 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
-        var layer_DistFromBuiltupOver100m_4 = new L.imageOverlay(img_DistFromBuiltupOver100m_4,
-                                              img_bounds_DistFromBuiltupOver100m_4,
-                                              {pane: 'pane_DistFromBuiltupOver100m_4'});
-        bounds_group.addLayer(layer_DistFromBuiltupOver100m_4);
-        map.addLayer(layer_DistFromBuiltupOver100m_4);
-        map.createPane('pane_DistFromWaterLT500m_5');
-        map.getPane('pane_DistFromWaterLT500m_5').style.zIndex = 405;
-        var img_DistFromWaterLT500m_5 = 'data/DistFromWaterLT500m_5.png';
-        var img_bounds_DistFromWaterLT500m_5 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
-        var layer_DistFromWaterLT500m_5 = new L.imageOverlay(img_DistFromWaterLT500m_5,
-                                              img_bounds_DistFromWaterLT500m_5,
-                                              {pane: 'pane_DistFromWaterLT500m_5'});
-        bounds_group.addLayer(layer_DistFromWaterLT500m_5);
-        map.addLayer(layer_DistFromWaterLT500m_5);
-        map.createPane('pane_ForestPreference_6');
-        map.getPane('pane_ForestPreference_6').style.zIndex = 406;
-        var img_ForestPreference_6 = 'data/ForestPreference_6.png';
-        var img_bounds_ForestPreference_6 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
-        var layer_ForestPreference_6 = new L.imageOverlay(img_ForestPreference_6,
-                                              img_bounds_ForestPreference_6,
-                                              {pane: 'pane_ForestPreference_6'});
-        bounds_group.addLayer(layer_ForestPreference_6);
-        map.addLayer(layer_ForestPreference_6);
-        map.createPane('pane_DistFromWW_10to100m_7');
-        map.getPane('pane_DistFromWW_10to100m_7').style.zIndex = 407;
-        var img_DistFromWW_10to100m_7 = 'data/DistFromWW_10to100m_7.png';
-        var img_bounds_DistFromWW_10to100m_7 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
-        var layer_DistFromWW_10to100m_7 = new L.imageOverlay(img_DistFromWW_10to100m_7,
-                                              img_bounds_DistFromWW_10to100m_7,
-                                              {pane: 'pane_DistFromWW_10to100m_7'});
-        bounds_group.addLayer(layer_DistFromWW_10to100m_7);
-        map.addLayer(layer_DistFromWW_10to100m_7);
+        map.createPane('pane_DistFromBuiltupOver100m_2');
+        map.getPane('pane_DistFromBuiltupOver100m_2').style.zIndex = 402;
+        var img_DistFromBuiltupOver100m_2 = 'data/DistFromBuiltupOver100m_2.png';
+        var img_bounds_DistFromBuiltupOver100m_2 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
+        var layer_DistFromBuiltupOver100m_2 = new L.imageOverlay(img_DistFromBuiltupOver100m_2,
+                                              img_bounds_DistFromBuiltupOver100m_2,
+                                              {pane: 'pane_DistFromBuiltupOver100m_2'});
+        bounds_group.addLayer(layer_DistFromBuiltupOver100m_2);
+        map.createPane('pane_DistFromWaterLT500m_3');
+        map.getPane('pane_DistFromWaterLT500m_3').style.zIndex = 403;
+        var img_DistFromWaterLT500m_3 = 'data/DistFromWaterLT500m_3.png';
+        var img_bounds_DistFromWaterLT500m_3 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
+        var layer_DistFromWaterLT500m_3 = new L.imageOverlay(img_DistFromWaterLT500m_3,
+                                              img_bounds_DistFromWaterLT500m_3,
+                                              {pane: 'pane_DistFromWaterLT500m_3'});
+        bounds_group.addLayer(layer_DistFromWaterLT500m_3);
+        map.createPane('pane_ForestPreference_4');
+        map.getPane('pane_ForestPreference_4').style.zIndex = 404;
+        var img_ForestPreference_4 = 'data/ForestPreference_4.png';
+        var img_bounds_ForestPreference_4 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
+        var layer_ForestPreference_4 = new L.imageOverlay(img_ForestPreference_4,
+                                              img_bounds_ForestPreference_4,
+                                              {pane: 'pane_ForestPreference_4'});
+        bounds_group.addLayer(layer_ForestPreference_4);
+        map.createPane('pane_DistFromWW_10to100m_5');
+        map.getPane('pane_DistFromWW_10to100m_5').style.zIndex = 405;
+        var img_DistFromWW_10to100m_5 = 'data/DistFromWW_10to100m_5.png';
+        var img_bounds_DistFromWW_10to100m_5 = [[57.2873519942771,-4.620438411098422],[57.67497200418376,-3.7316927398572943]];
+        var layer_DistFromWW_10to100m_5 = new L.imageOverlay(img_DistFromWW_10to100m_5,
+                                              img_bounds_DistFromWW_10to100m_5,
+                                              {pane: 'pane_DistFromWW_10to100m_5'});
+        bounds_group.addLayer(layer_DistFromWW_10to100m_5);
+        map.createPane('pane_Supermarkets5kmBuffered_6');
+        map.getPane('pane_Supermarkets5kmBuffered_6').style.zIndex = 406;
+        var img_Supermarkets5kmBuffered_6 = 'data/Supermarkets5kmBuffered_6.png';
+        var img_bounds_Supermarkets5kmBuffered_6 = [[57.287331454495096,-4.6204044383463465],[57.67495123966822,-3.7316595952019194]];
+        var layer_Supermarkets5kmBuffered_6 = new L.imageOverlay(img_Supermarkets5kmBuffered_6,
+                                              img_bounds_Supermarkets5kmBuffered_6,
+                                              {pane: 'pane_Supermarkets5kmBuffered_6'});
+        bounds_group.addLayer(layer_Supermarkets5kmBuffered_6);
+        map.createPane('pane_Pubs2500mBuffered_7');
+        map.getPane('pane_Pubs2500mBuffered_7').style.zIndex = 407;
+        var img_Pubs2500mBuffered_7 = 'data/Pubs2500mBuffered_7.png';
+        var img_bounds_Pubs2500mBuffered_7 = [[57.287331454495096,-4.6204044383463465],[57.67495123966822,-3.7316595952019194]];
+        var layer_Pubs2500mBuffered_7 = new L.imageOverlay(img_Pubs2500mBuffered_7,
+                                              img_bounds_Pubs2500mBuffered_7,
+                                              {pane: 'pane_Pubs2500mBuffered_7'});
+        bounds_group.addLayer(layer_Pubs2500mBuffered_7);
         function pop_Pubs_8(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -387,10 +378,6 @@
                 return L.circleMarker(latlng, style_Pubs_8_0(feature));
             },
         });
-        var cluster_Pubs_8 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
-        cluster_Pubs_8.addLayer(layer_Pubs_8);
-
         bounds_group.addLayer(layer_Pubs_8);
         function pop_Supermarkets_9(feature, layer) {
             var popupContent = '<table>\
@@ -544,7 +531,6 @@
             },
         });
         bounds_group.addLayer(layer_Supermarkets_9);
-        map.addLayer(layer_Supermarkets_9);
         map.createPane('pane_Suitability2_WithAmenities_10');
         map.getPane('pane_Suitability2_WithAmenities_10').style.zIndex = 410;
         var img_Suitability2_WithAmenities_10 = 'data/Suitability2_WithAmenities_10.png';
@@ -555,7 +541,7 @@
         bounds_group.addLayer(layer_Suitability2_WithAmenities_10);
         map.addLayer(layer_Suitability2_WithAmenities_10);
         var baseMaps = {};
-        L.control.layers(baseMaps,{"Suitability2_WithAmenities": layer_Suitability2_WithAmenities_10,'<img src="legend/Supermarkets_9.png" /> Supermarkets': layer_Supermarkets_9,'<img src="legend/Pubs_8.png" /> Pubs': cluster_Pubs_8,"DistFromWW_10to100m": layer_DistFromWW_10to100m_7,"ForestPreference": layer_ForestPreference_6,"DistFromWaterLT500m": layer_DistFromWaterLT500m_5,"DistFromBuiltupOver100m": layer_DistFromBuiltupOver100m_4,"Pubs2500mBuffered": layer_Pubs2500mBuffered_3,"Supermarkets5kmBuffered": layer_Supermarkets5kmBuffered_2,'<img src="legend/StudyArea_1.png" /> StudyArea': layer_StudyArea_1,"TF Transport Dark": layer_TFTransportDark_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{"Suitability2_WithAmenities": layer_Suitability2_WithAmenities_10,'<img src="legend/Supermarkets_9.png" /> Supermarkets': layer_Supermarkets_9,'<img src="legend/Pubs_8.png" /> Pubs': layer_Pubs_8,"Pubs2500mBuffered": layer_Pubs2500mBuffered_7,"Supermarkets5kmBuffered": layer_Supermarkets5kmBuffered_6,"DistFromWW_10to100m": layer_DistFromWW_10to100m_5,"ForestPreference": layer_ForestPreference_4,"DistFromWaterLT500m": layer_DistFromWaterLT500m_3,"DistFromBuiltupOver100m": layer_DistFromBuiltupOver100m_2,'<img src="legend/StudyArea_1.png" /> StudyArea': layer_StudyArea_1,"TF Transport Dark": layer_TFTransportDark_0,},{collapsed:false}).addTo(map);
         setBounds();
         L.ImageOverlay.include({
             getBounds: function () {
