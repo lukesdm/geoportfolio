@@ -37,7 +37,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        })
+        }).setView({ lat: 57.47731, lon: -4.23866 }, 11);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         map.attributionControl.addAttribution('Land cover: © <a href="https://www.space-intelligence.com/">Space Intelligence</a>, licensed under Open Government License 3.0');
@@ -45,11 +45,6 @@
         map.attributionControl.addAttribution('Basemap: © <a href="https://www.thunderforest.com/">Thunderforest</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
         var bounds_group = new L.featureGroup([]);
-        function setBounds() {
-            if (bounds_group.getLayers().length) {
-                map.fitBounds(bounds_group.getBounds());
-            }
-        }
         map.createPane('pane_TFTransportDark_0');
         map.getPane('pane_TFTransportDark_0').style.zIndex = 400;
         var layer_TFTransportDark_0 = L.tileLayer('https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=7300590a86424fe89365f9452045d078', {
@@ -546,7 +541,6 @@
         map.addLayer(layer_Suitability2_WithAmenities_10);
         var baseMaps = {};
         L.control.layers(baseMaps,{"Campsite rating": layer_Suitability2_WithAmenities_10,'<img src="legend/Supermarkets_9.png" /> Supermarkets': layer_Supermarkets_9,'<img src="legend/Pubs_8.png" /> Pubs': layer_Pubs_8,"Within 2.5km of pub": layer_Pubs2500mBuffered_7,"Within 5km of supermarket": layer_Supermarkets5kmBuffered_6,"10-100m from track": layer_DistFromWW_10to100m_5,"Forest type weighting": layer_ForestPreference_4,"Within 500m of water": layer_DistFromWaterLT500m_3,"Over 100m from buildings": layer_DistFromBuiltupOver100m_2,'<img src="legend/StudyArea_1.png" /> Region of interest': layer_StudyArea_1,"TF Transport Dark": layer_TFTransportDark_0,},{collapsed:false}).addTo(map);
-        setBounds();
         L.ImageOverlay.include({
             getBounds: function () {
                 return this._bounds;
