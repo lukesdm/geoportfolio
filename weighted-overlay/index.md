@@ -48,7 +48,7 @@ A region around the small, coastal city of Inverness in the Highlands is the foc
 <div class="items style1 medium center">
 <section markdown="1">
 
-![Ascending Ben Nevis](assets/bn-asc-mcquade-sm.jpg)
+[![Ascending Ben Nevis](assets/bn-asc-mcquade-sm.jpg)](assets/bn-asc-mcquade-full.jpg)
 *Ascending Ben Nevis*
 
  Typical Highland landscape.
@@ -67,7 +67,7 @@ Surfaces that are unaccommodating for tents can appear flat on all but the highe
 <section>
 <div class="inner" markdown="1">
 
-![Sundew](assets/sundew-mcquade-sm.jpg)
+[![Sundew](assets/sundew-mcquade-sm.jpg)](assets/sundew-mcquade-full.jpg)
 *Sundew*
 
 Likewise, wet ground can be problematic for tents.
@@ -78,7 +78,7 @@ Likewise, wet ground can be problematic for tents.
 <section>
 <div class="inner" markdown="1">
 
-![Tent site](assets/tent-mcquade-sm.jpg)
+[![Tent site](assets/tent-mcquade-sm.jpg)](assets/tent-mcquade-full.jpg)
 *Outside Drumnadrochit*
 
 Even so, there's still usually a place to pitch a tent by the end of the day.  
@@ -88,7 +88,7 @@ Even so, there's still usually a place to pitch a tent by the end of the day.
 <section>
 <div class="inner" markdown="1">
 
-![Scots pine](assets/pine-mcquade-sm.jpg)
+[![Scots pine](assets/pine-mcquade-sm.jpg)](assets/pine-mcquade-full.jpg)
 *Scots pine, Beinn Eighe*
 
 Ancient [Caledonian forest][CalFor] can be a tempting destination, but extra care has to be taken in this delicate environment.
@@ -98,7 +98,7 @@ Ancient [Caledonian forest][CalFor] can be a tempting destination, but extra car
 <section>
 <div class="inner" markdown="1">
 
-![Potato cakes](assets/brekky-mcquade-sm.jpg)
+[![Potato cakes](assets/brekky-mcquade-sm.jpg)](assets/brekky-mcquade-full.jpg)
 *Tatty scones*  
 
 Access to fresh supplies is always something to think about.  
@@ -108,7 +108,7 @@ Access to fresh supplies is always something to think about.
 <section>
 <div class="inner" markdown="1">
 
-![Cattle](assets/hc-mcquade-sm.jpg)
+[![Cattle](assets/hc-mcquade-sm.jpg)](assets/hc-mcquade-full.jpg)
 *Highland cattle*  
 
 Dangers from wildlife are minimal, [for now][Rewilding]. (Though still be [careful around cows][Cows].) 
@@ -118,7 +118,7 @@ Dangers from wildlife are minimal, [for now][Rewilding]. (Though still be [caref
 <section>
 <div class="inner" markdown="1">
 
-![Caledonian Canal sea lock](assets/sealock-mcquade-sm.jpg)
+[![Caledonian Canal sea lock](assets/sealock-mcquade-sm.jpg)](assets/sealock-mcquade-full.jpg)
 *Clachnaharry Sea Lock*
 
 The coastline of Scotland can be complex, so its not always obvious if water on the map is salt- or fresh-water in reality.  
@@ -137,9 +137,9 @@ The coastline of Scotland can be complex, so its not always obvious if water on 
 
 ## Method
 
-Given some of the factors discussed earlier, a model for suitable hammock-camping spots can be created. There are some hard requirements that have to be fulfilled, and then preference or desirability can be considered. A final suitability rating of 1 to 5 is assigned.
+Given some of the factors discussed earlier, a model for suitable hammock-camping spots can be created. There are some hard requirements that have to be fulfilled, and then preference or desirability can be considered. A final suitability rating of 1 to 5 (higher is better) is assigned.
 
-An approach similar to *[@spatialthoughts][ST]*' *[Multi Criteria Overlay Analysis guide][MCOAGuide]* was taken, mainly using the *Raster Calculator* and *Proximity (raster distance)* tools.
+*An approach similar to [@spatialthoughts][ST]' [Multi Criteria Overlay Analysis guide][MCOAGuide] was taken, mainly using the Raster Calculator and Proximity (raster distance) tools.*
 
 ### Model
 
@@ -153,6 +153,8 @@ An approach similar to *[@spatialthoughts][ST]*' *[Multi Criteria Overlay Analys
 | Within 100m of an accessible trail | Trekking through woodland can be difficult.
 | Not less than 10m from trail | For discretion, and to account for width of track.  
 
+All of these have to be true for a candidate site, so model these with binary layers (values 0 and 1) and multiply them all, creating an *essential* mask.
+
 #### Desirability
 
 | Criterion | Weighting | Rationale
@@ -162,6 +164,8 @@ An approach similar to *[@spatialthoughts][ST]*' *[Multi Criteria Overlay Analys
 | Forest type: Mixed | 2 | Has characteristics of each of the above.
 | Within 5km of a supermarket | 0.5 | Access to supplies, approx. 1hr one-way.
 | Within 2.5km of a pub | 0.5 | Access to beer, approx. 1hr round-trip.
+
+Multiply each by the *essential* mask and its weighting, and sum the results to create the final suitability layer.
 
 #### Not considered
 
