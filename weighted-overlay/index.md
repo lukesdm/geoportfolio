@@ -206,6 +206,8 @@ Fortunately in 2021, Space Intelligence with NatureScot released a [land cover d
 ## Results
 After performing the overlay analysis, a map showing suitable regions was created. Overlay layers for each of the criteria can be toggled to view the effects each has on the end result. (CSS blend modes were employed for this - see [custom.css][BCSS].)  
 
+*Corrigendum: The '10-100m from track' layer was miscalculated - it's out by a factor of 20 as the distance surface it was generated from was valued in pixels rather than metres.*
+
 ### Limitations
 There are some shortcomings with the model, and in practice it's probably not very useful without further work. 
 * It's not just people's gardens that are out of bounds, plenty of private/protected forest is enclosed and inaccessible.
