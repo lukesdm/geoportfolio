@@ -1,4 +1,8 @@
-[🥨 Bakeries of Vienna](bakeries-vienna) - A basic map-based story, demonstrating integration of Leaflet, some Austrian Open Data, and a 3rd-party template.  
+[⛺ Spatial Analysis: Highland Hammockery](weighted-overlay) - Using weighted overlay analysis to identify hammock-camping spots around Inverness.
+
+[🌊 Spatial Analysis: Surface Runoff](surface-runoff) - Some basic hydrological analysis using QGIS and the built-in SAGA tools.
+
+[🥨 Bakeries of Vienna](bakeries-vienna) - A basic map-based story, demonstrating integration of Leaflet, some Austrian Open Data, and integrating a 3rd-party template.  
 
 <hr>
 
