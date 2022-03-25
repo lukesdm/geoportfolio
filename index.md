@@ -1,3 +1,5 @@
+[📄 Getting Started with the eCognition SDK](ecognition-sdk-starting) - A brief setup guide for the eCognition C++ SDK.
+
 [⛺ Spatial Analysis: Highland Hammockery](weighted-overlay) - Using weighted overlay analysis to identify hammock-camping spots around Inverness.
 
 [🌊 Spatial Analysis: Surface Runoff](surface-runoff) - Some basic hydrological analysis using QGIS and the built-in SAGA tools.
