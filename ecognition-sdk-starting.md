@@ -18,7 +18,7 @@ In there you will find the required source and binary dependencies, samples, and
 
 ### 2. Explore the sample files and documentation
 
-Take a look at the files and folders of the SDK. Let's say we are interested in the implementation of a custom image processing algorithm. You will find a useful readme.txt in `SDK\Engine\Samples`. For the rest of the guide, assume we are working with the group of samples in `SDK\Engine\Samples\SampleEPIAlgrSet`.
+Take a look at the files and folders of the SDK. Let's say we are interested in the implementation of a custom image processing algorithm. You will find a useful readme.txt in `SDK\Engine\Samples`. For the rest of the guide, assume we are working with the sample in `SDK\Engine\Samples\SampleEPIAlgrSet`, which is a plugin containing a few processing algorithms.
 
 ### 3. Install Visual Studio 2019 with C++ and MFC
 
@@ -30,9 +30,9 @@ E.g. from `SDK\Engine\Samples\SampleEPIAlgrSet\SampleEPIAlgrSet.vcxproj`:
 ```
 Looking this up will tell you which version of VS you need. (This may be a way to determine the required VS version in previous versions of eCognition also.)
 
-So, you will need to have installed VS 2019 with the C++ - **you will also need the MFC optional component**.
+So, you will need to have installed VS 2019 with C++ - **you also need the MFC optional component**.
 
-(If you miss the MFC component, you will see an error later pointing to a missing `afxres.h` file.)
+If you miss the MFC component, you will see an error later pointing to a missing `afxres.h` file.
 
 ### 4. Open Visual Studio as Administrator and load the Solution
 
@@ -46,10 +46,19 @@ If you try a build now, you will see a reference to a missing `OSWrapper/stdwrap
 
 ### 6. Build as Release
 
-The Solution defaults to trying to build in Debug mode. But, the samples reference some debug libraries that aren't included in the SDK (e.g. `EngineD.lib` rather than `Engine.lib`). So, switch to Release mode. You should now be able to successfully build the sample plugins.
+The Solution defaults to trying to build in Debug mode. But, the samples reference some debug libraries that aren't included in the SDK (e.g. `EngineD.lib` rather than `Engine.lib`). So, switch to Release mode. You should now be able to build the sample plugin.
 
-### 7. Copy built plugins
+The plugin is built to eCognition's parent directory, `C:\Program Files\Trimble\bin\plugins`.
 
-The plugins are built to eCognition's parent directory, `C:\Program Files\Trimble\bin\plugins`. Copy the contents to your eCognition folder`, e.g `C:\Program Files\Trimble\eCognition Developer 10.1\bin\plugins`.
+![image](https://user-images.githubusercontent.com/2824165/160059959-f8ccaea5-04e7-4902-88c0-e335664f2ced.png)
 
-You should now be able to start eCognition and see the sample plugins in the Process
+### 7. Install the built plugin
+
+To install the built plugin, is just needs to be copied under your eCognition install folder, i.e. to `C:\Program Files\Trimble\eCognition Developer 10.1\bin\plugins`.
+
+![image](https://user-images.githubusercontent.com/2824165/160060617-e6cec389-38eb-4ad8-ae6e-6597ee0a6cb8.png)
+
+You should now be able to start eCognition and see the sample algorithms in the 'Edit Process' window.
+
+![image](https://user-images.githubusercontent.com/2824165/160060962-1d9e79a0-d981-4975-a47e-02e0f4c57729.png)
+
