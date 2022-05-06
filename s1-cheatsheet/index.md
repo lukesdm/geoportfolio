@@ -1,5 +1,7 @@
 # Sentinel-1 Cheatsheet
 
+A rough guide to choosing appropriate Copernicus [Sentinel-1](https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-1) synthetic aperture radar (SAR) data products and [SNAP/Sentinel-1 Toolbox](https://sentinel.esa.int/web/sentinel/toolboxes/sentinel-1) pre-processing steps. Some of these are mutually exclusive. Please feel free to submit corrections or clarifications.  
+
 <table>
 <thead>
   <tr>
@@ -184,3 +186,5 @@
   </tr>
 </tbody>
 </table>
+
+Created by Luke McQuade. License: [CC-BY-SA](https://creativecommons.org/licenses/by-sa/4.0/)
