@@ -1,0 +1,252 @@
+---
+title: 'The eCognition C++ SDK'
+format:
+    revealjs:
+        slide-number: true
+        fig-align: center
+
+jupyter: python3
+author: 'Luke McQuade (luke.mcquade@stud.sbg.ac.at)'
+institute: 'PLUS | Z_GIS'
+date: '13th May 2022'
+bibliography: 'references.bib'
+csl: ieee.csl
+---
+
+## Contents
+
+* What is C++?
+* What is an SDK?
+* eCognition SDK overview
+
+## What is C++?
+
+```{.cpp code-line-numbers="|7-12|11,16,18-21|27-28|44-49"}
+// source: https://www.geeksforgeeks.org/circular-linked-list-set-2-traversal/
+
+#include <bits/stdc++.h>
+using namespace std;
+ 
+/* structure for a node */
+class Node
+{
+    public:
+    int data;
+    Node *next;
+};
+ 
+/* Function to insert a node at the beginning
+of a Circular linked list */
+void push(Node **head_ref, int data)
+{
+    Node *ptr1 = new Node();
+    Node *temp = *head_ref;
+    ptr1->data = data;
+    ptr1->next = *head_ref;
+ 
+    /* If linked list is not NULL then
+    set the next of last node */
+    if (*head_ref != NULL)
+    {
+        while (temp->next != *head_ref)
+            temp = temp->next;
+        temp->next = ptr1;
+    }
+    else
+        ptr1->next = ptr1; /*For the first node */
+ 
+    *head_ref = ptr1;
+}
+ 
+/* Function to print nodes in
+a given Circular linked list */
+void printList(Node *head)
+{
+    Node *temp = head;
+    if (head != NULL)
+    {
+        do
+        {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        while (temp != head);
+    }
+}
+ 
+/* Driver program to test above functions */
+int main()
+{
+    /* Initialize lists as empty */
+    Node *head = NULL;
+ 
+    /* Created linked list will be 11->2->56->12 */
+    push(&head, 12);
+    push(&head, 56);
+    push(&head, 2);
+    push(&head, 11);
+ 
+    cout << "Contents of Circular Linked List\n ";
+    printList(head);
+ 
+    return 0;
+}
+ 
+// This is code is contributed by rathbhupendra
+```
+@g4g-ll
+
+Classes; pointers; loops; some resemblance to Python.
+
+## Performance {auto-animate=true}
+
+:::: {.columns}
+
+::: { .column width="50%" }
+Python:  
+![](bean-car.jpg)
+
+*Image: @bean-car*
+:::
+
+::: { .column width="50%" }
+C++:  
+![](ucf-rocket.jpg)
+
+*Image: @ucf-rocket*
+
+Note: Not all C++
+:::
+
+::::
+
+## Safety {auto-animate=true}
+
+:::: {.columns}
+
+::: { .column width="50%" }
+Python:  
+![](dump-truck.jpg)
+
+*Image: @dump-truck*
+:::
+
+::: { .column width="50%" }
+C++:  
+![](bean-car.jpg)
+
+*Image: @bean-car*
+:::
+
+::::
+
+## Why?
+
+**Memory management; Compilation**
+
+:::: {.columns}
+
+::: { .column width="50%" }
+Python:  
+**Dynamic**  
+**Interpreted**
+:::
+
+::: { .column width="50%" }
+C++:  
+**Static**  
+**Compiled**
+:::
+
+::::
+
+*Note: there are fast(er) dynamic languages (Julia), and safe(r) static languages (Rust)*
+
+
+## *"But Numpy/GDAL/opencv is fast"*
+
+![](gdal-python.jpg)
+
+@gdal-gh
+
+
+## What is an SDK?
+
+Software Development Kit: Things needed to build on top of another piece of software, e.g.  
+
+* Libraries  
+* Tools  
+* Documentation  
+* Sample code  
+
+## eCognition SDK: Overview
+
+![](sdk-overview-1.svg)
+
+
+## eCognition SDK: Overview
+
+![](sdk-overview-2.svg)
+
+
+## eCognition SDK: Overview
+
+![](sdk-overview-3.svg)
+
+
+## eCognition SDK: Overview
+
+![](sdk-overview-4.svg)
+
+
+## eCognition SDK: Essentials
+
+* Installed with eCognition Developer - optional component
+* Windows
+* Microsoft VC++ Compiler 2019 (Visual Studio Community/Professional)  
+
+## eCognition SDK: Documentation
+
+* Online (some) @ecog-sdk-online-docs
+* In the SDK folder (better):
+  * Documents (PDFs)  
+  * Code samples  
+* Luke's *Getting Started* guide @mcq-sdk-starting
+
+## Use Case: A Custom Algorithm
+
+![](sdk-sample-params-ui.png)
+
+
+## Let's look at some code...
+
+
+## Pitfalls
+
+* Crashes + memory leaks more likely
+* Make changes -> Re-compile -> Restart eCognition
+* C++ is hard to interop with (inheritance) (C, Fortran are easier)
+
+
+## Suggestions
+
+* Work outside using $favourite_language, utilizing data export and import  
+* Consider the SDK if performance an issue  
+* Maybe cppyy? @cppyy-docs  
+
+
+## Why learn C++?
+
+* Unreal Engine @ue-home
+* Still lots of C++ EO code (esp. SAR @dlr-venus-dem-job)
+* *But*, complications in learning:
+  * Mixed quality resources
+  * 'Modern C++' vs 'Old C++'
+
+## Thanks!
+
+This presentation was made using Quarto with RevealJS @quarto-revealjs. Source code here (TODO).
+
+## References
+
+
