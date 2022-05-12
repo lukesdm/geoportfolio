@@ -245,7 +245,8 @@ Software Development Kit: Things needed to build on top of another piece of soft
 
 ## Thanks!
 
-This presentation was made using Quarto with RevealJS @quarto-revealjs. Source code here (TODO).
+This presentation was made using Quarto with RevealJS @quarto-revealjs. Source code here: @pres-src.
+
 
 ## References
 
