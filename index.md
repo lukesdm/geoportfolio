@@ -1,3 +1,5 @@
+[🌍🐍 GeoPython 2022 - Personal Highlights](geopython22-report)
+
 [📄 Getting Started with the eCognition SDK](ecognition-sdk-starting) - A brief setup guide for the eCognition C++ SDK.
 
 [⛺ Spatial Analysis: Highland Hammockery](weighted-overlay) - Using weighted overlay analysis to identify hammock-camping spots around Inverness.

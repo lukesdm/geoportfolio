@@ -1,13 +1,12 @@
 ---
 title: "Highlights of GeoPython 22"
 author: "Luke McQuade"
+date: "27-June-2022"
 license: "CC BY"
 format:
   html:
     anchor-sections: true
 ---
-
-## STATUS: DRAFT
 
 ## Introduction
 
@@ -102,7 +101,7 @@ Please [get in touch](https://lukesdm.github.io/geoportfolio/about) with any que
 
 ## About {.appendix}
 
-Made with [Quarto](https://quarto.org/). Source: TODO.
+Made with [Quarto](https://quarto.org/). [Source](https://github.com/lukesdm/geoportfolio/tree/main/geopython22-report). [Home](/).
 
 [^FHNW]: [University of Applied Sciences and Arts Northwestern Switzerland](https://www.fhnw.ch/en/)
 [^PolInSAR]: [Polarimetric synthetic aperture radar interferometry](https://www.semanticscholar.org/paper/Polarimetric-SAR-Interferometry-(-PolInSAR-)-and-Kumar-Khati/4e061135474342eaa48e1f4bf87f5fcabd6756c9)
