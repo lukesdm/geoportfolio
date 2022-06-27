@@ -78,9 +78,9 @@ Some other related resources:
 
 Geospatial analysis and communication involves using complex, highly abstracted tools and libraries. I grew up frying electronic components for fun, and it's unrealistic to expect everyone to have a similar background. So, I was very interested to hear from [Barend Köbben](https://submit.geopython.net/geopython-2022/speaker/RYYCFX/) about the teaching methodology developed for [ITC](https://www.itc.nl/)'s masters programme: Which parts of computer science and software engineering to include, and which to skip; the make-up of assignments and exercises.  
 
-Barend has kindly allowed me to include one of the key slides:
+Barend has kindly allowed me to include one of the key slides:  
 
-![Teaching GeoPython at ITC. © Barend Köbben.](teaching-geopython-18.png)
+![Teaching GeoPython at ITC, by Barend Köbben. ©GIP dept.](teaching-geopython-18.png)  
 
 
 ### Some Other Good Stuff
