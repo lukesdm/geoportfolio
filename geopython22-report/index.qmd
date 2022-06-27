@@ -1,0 +1,119 @@
+---
+title: "Highlights of GeoPython 22"
+author: "Luke McQuade"
+license: "CC BY"
+format:
+  html:
+    anchor-sections: true
+---
+
+## STATUS: DRAFT
+
+## Introduction
+
+GeoPython 2022 took place in Basel, Switzerland, from 20th to 22nd June. As for many, it was my first conference in a while. I attended with two hats - as a student of Earth Observation (EO) and geo-data science, and as a software engineer working on a [semantic datacube platform](https://sen2cube.at/).
+
+The venue was the FHNW[^FHNW] campus - an epic, inside-out-brutalist, Escher-tinged building. Think, *Techno Valhalla*.
+
+![The FHNW interior.](fhnw-inside.jpg)
+
+From a high-level view, the most striking thing about the conference was the sheer variety of the talks, especially given its size (approx. 100 on-site attendees). Talks ranged from software engineering fundamentals ([static typing with mypy, by Michal Gutowski](https://submit.geopython.net/geopython-2022/talk/3RGDQM/)) to cutting edge applied research ([Sylvia Schmitz's talk](https://submit.geopython.net/geopython-2022/talk/XFLFUB/) on using UMAP[^UMAP] for PolInSAR[^PolInSAR]).
+
+![The spectrum of talks [^prism].](talk-spectrum.png)
+
+Note: I'm quite new to the geospatial field - I have a background mainly as a software engineer, with some signal processing knowledge - so take some of these opinions with a pinch of salt.  
+
+## Personal Highlights
+
+I have limited time, so these personal highlights are the most relevant to my work or studies. Rather than give a talk-by-talk run-through, I will discuss the content by theme, because sometimes multiple talks pulled on different threads of the same idea. I thoroughly enjoyed all the sessions I attended, and learned something valuable from each one.
+
+### Types and Validation (Software Engineering)
+
+An interesting discussion arose regarding static-typing (with [mypy](https://github.com/python/mypy)) vs runtime-typing (with [typeguard](https://github.com/agronholm/typeguard)). In summary, runtime type-checking has the strongest guarantees of safety, but the performance hit is a tradeoff. I've gone through a similar decision process in the TypeScript world and my conclusions were that the optimal solution is probably to use a bit of both - apply validation at the IO boundaries[^iob], and rely on static-typing for the rest of the code.  
+
+[Pydantic](https://pydantic-docs.helpmanual.io/) was brought up in the [QGreenland talk](https://submit.geopython.net/geopython-2022/talk/YX9VBG/), as [Trey Stafford](https://www.qgreenland.org/our-team) discussed the evolution of their custom configuration solutions[^yaml]. This is a library for configuration management using Python files, and could be very useful. Though, care has to be taken with user-supplied config files from a security perspective.  
+
+
+### Scaling Up (Software Engineering)
+
+As we're effectively working with ♾GB of data, performance-tuning and scaling is an important topic, and many of the talks were about some aspect of this. At single-machine scale, [Numba](https://numba.pydata.org/) was introduced as part of [Brendan Collins](https://submit.geopython.net/geopython-2022/speaker/XRNGVX/)' talk *Who Said Wrangling Geospatial Data at Scale was Easy?*. Numba is a just-in-time compiler which compiles functions as though they were C code, rather than interpreted line-by-line as per regular Python[^cpython]. There are further features to enable multi-processing and running code on CUDA-capable GPUs[^numba-more]. This however, was part of something bigger: [Xarray-spatial](https://xarray-spatial.org/) combines [xarray](https://docs.xarray.dev/en/stable/), Numba and [Dask](https://www.dask.org/) to perform large-scale distributed raster analysis. 
+
+A valuable lesson on xarray came earlier from [Donjeta Runjeva](https://submit.geopython.net/geopython-2022/speaker/RMQRA8/) in her [talk](https://submit.geopython.net/geopython-2022/talk/YSYLJS/) on [SEGES](https://en.seges.dk/)' Danish agricultural data cube: xarray works on regular grids, which multi-temporal satellite imagery does not always nicely fit into, e.g., an area of interest spanning boundaries of tiles captured on different days.
+
+Moving into the vector domain, a major development from the [GeoPandas](https://geopandas.org/en/stable/) team is [Dask-GeoPandas](https://github.com/geopandas/dask-geopandas). This offers a similar API to GeoPandas, but behind-the-scenes builds a Dask task graph and performs spatial partitioning using space-filling curves[^sf-curves]. It's still being built; there are currently some limitations, which were well explained, including:  
+
+* Accurately determining memory requirements for the scheduler is still a work-in-progress.  
+* Operations that span partitions, i.e., require some overlap, require some manual work.
+
+There was a workshop on Day 3, where we got to try this out. There is a Jupyter notebook available that anyone can try (though it can take a little while to get the environment set up): [*Dask-GeoPandas introduction tutorial*](https://github.com/martinfleis/dask-geopandas-tutorial).
+
+### PolInSAR Analysis (Remote Sensing)
+
+Being from the North of England, where a cloud-free day is a rare treat, weather-agnostic synthetic aperture radar (SAR) has become one of my favourite topics. Interpreting SAR data is notoriously difficult[^sar-hard], and squeezing every drop of information out of an instrument's available measures is a useful and interesting problem area. [Sylvia Schmitz](https://submit.geopython.net/geopython-2022/talk/XFLFUB/)'s talk on exploratory analysis and visualization of high-dimensional remote sensing data introduced some fascinating approaches using Uniform Manifold Approximation and Projection (UMAP) - a non-linear dimension reduction algorithm. I would need to spend some more time to fully understand the details, but Sylvia demonstrated being able to transform a multi-band, quad-pol SAR[^fsar] feature space containing ~100 dimensions into clearly separated clusters representing various land-cover classes. Full details are in her paper, [*Evaluating uniform manifold approximation and projection for dimension reduction and visualization of PolInSAR features*](https://www.scilit.net/article/c54d4ddc15508459e93b8d8f7d12cd84).
+
+![Extract of Figure 1 from *[S. Schmitz et al, 2021](https://www.scilit.net/article/c54d4ddc15508459e93b8d8f7d12cd84)*, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).](polinsar-umap-f1-extract.png)  
+
+Some other related resources:  
+
+* [UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction](https://umap-learn.readthedocs.io/en/latest/)  
+* [Understanding UMAP](https://pair-code.github.io/understanding-umap/)  
+
+
+### Crop Classification with Similarity Metrics (Remote Sensing)
+
+[Dimo Dimov](https://www.xing.com/profile/Dimo_Dimov) from [Geocledian](https://www.geocledian.com/) presented an approach for crop classification using multi-spectral imagery, which instead of classic global indexes such as NDVI or convolutional approaches, used localised similarity metrics within a 5km radius. This may be less sensitive to changes in image characteristics such as world region or atmospheric conditions, or perform better than typical spectral learning approaches, wrt. accuracy or computation requirements. A corresponding paper  is available: [*Classification of remote sensing time series and similarity metrics for crop type verification*](https://www.researchgate.net/publication/360397035_Classification_of_Remote_Sensing_Time_Series_and_Similarity_Metrics_for_Crop_Type_Verification). From the abstract: "Overall, the achieved classification accuracy for more than 67 crop types scores more than 80%".
+
+### Deep Learning/Neural Networks
+
+[Adrian Meyer](https://www.fhnw.ch/de/personen/adrian-meyer) and [Martin Christen](https://www.fhnw.ch/de/personen/martin-christen) hosted the workshop, *Applied Semantic Segmentation for Large Scale Aerial Imagery*, which took us through the end-to-end process of labelling, training and running inferences of a GPU-accellerated [PyTorch](https://pytorch.org/) deep learning model for the classification of 10cm aerial imagery[^swisstopo]. There was an introduction to [segments.ai](https://segments.ai/) for labelling and managing images, and a [Colab](https://colab.research.google.com/) notebook took us through the rest of the steps.
+
+![Training the model.](dl-training.png)  
+
+![Sample classification result.](dl-out-ex.png)  
+
+[DL4DS (Deep Learning for empirical DownScaling)](https://github.com/carlos-gg/dl4ds) was presented by creator [Carlos Gonzalez](https://submit.geopython.net/geopython-2022/speaker/ASEQ77/), and is a framework allowing bespoke DL down-scaling/super-resolution networks to be constructed using building blocks from different techniques. It's designed with climate-modelling in mind but should be applicable to other application areas.  
+
+
+### Teaching Programming to Geographers
+
+Geospatial analysis and communication involves using complex, highly abstracted tools and libraries. I grew up frying electronic components for fun, and it's unrealistic to expect everyone to have a similar background. So, I was very interested to hear from [Barend Köbben](https://submit.geopython.net/geopython-2022/speaker/RYYCFX/) about the teaching methodology developed for [ITC](https://www.itc.nl/)'s masters programme: Which parts of computer science and software engineering to include, and which to skip; the make-up of assignments and exercises.  
+
+Barend has kindly allowed me to include one of the key slides:
+
+![Teaching GeoPython at ITC. © Barend Köbben.](teaching-geopython-18.png)
+
+
+### Some Other Good Stuff
+
+* [Anita Graser](https://anitagraser.com/about/)'s [MovingPandas](https://github.com/anitagraser/movingpandas): Adds multi-temporal capabilities to GeoPandas, supporting things like trajectory mapping. I think this could be very useful for habitat mapping[^gps-snowleopards].
+
+* [pygeofilter](https://github.com/geopython/pygeofilter), from [Fabian Schindler](https://github.com/constantinius): Like a Babel Fish for spatial filter languages and APIs. 
+
+* [Johannes Uhl](https://www.colorado.edu/geography/johannes-uhl-0)'s [historical Map Processor](https://github.com/johannesuhl/mapprocessor): A pipeline to mosiac USGS historical maps and allow them to be spatially queried as though they were a satellite timeseries starting in the 1800s.  
+
+
+
+## Wrapping up 
+
+Huge thanks to the [@GeoPythonConf](https://twitter.com/GeoPythonConf) team and the presenters, and my department, [Z_GIS](https://www.plus.ac.at/geoinformatik/?lang=en), for funding the trip.
+
+Please [get in touch](https://lukesdm.github.io/geoportfolio/about) with any questions or corrections, or if I've mentioned you and would prefer a different profile link to the one I chose. 
+
+
+## About {.appendix}
+
+Made with [Quarto](https://quarto.org/). Source: TODO.
+
+[^FHNW]: [University of Applied Sciences and Arts Northwestern Switzerland](https://www.fhnw.ch/en/)
+[^PolInSAR]: [Polarimetric synthetic aperture radar interferometry](https://www.semanticscholar.org/paper/Polarimetric-SAR-Interferometry-(-PolInSAR-)-and-Kumar-Khati/4e061135474342eaa48e1f4bf87f5fcabd6756c9)
+[^iob]: I.e., verify the response from web request or content of a read file has the expected structure
+[^UMAP]: [Uniform Manifold Approximation and Projection for Dimension Reduction](https://umap-learn.readthedocs.io/en/latest/)
+[^prism]: Based on [Prism-rainbow-black.svg: Suidroot, Sceptre, CC BY-SA 3.0](https://commons.wikimedia.org/wiki/File:Prism-rainbow-black.svg)
+[^sar-hard]: [CRISP - Interpreting SAR Images](https://crisp.nus.edu.sg/~research/tutorial/sar_int.htm)
+[^cpython]: Typically [CPython](https://en.wikipedia.org/wiki/CPython)
+[^numba-more]: Numba - [Parallelize Your Algorithms](https://numba.pydata.org/#:~:text=Parallelize%20Your%20Algorithms)
+[^sf-curves]: ![Hilbert Curve, 6 iterations](220px-Hilbert-curve_rounded-gradient-animated.gif) E.g., the Hilbert Curve ([TimSauder, Creative Commons CC BY-SA 4.0](https://en.wikipedia.org/wiki/Hilbert_curve#/media/File:Hilbert-curve_rounded-gradient-animated.gif))
+[^gps-snowleopards]: [Snow leopard fitted with GPS tag](http://news.bbc.co.uk/2/hi/technology/6188482.stm)
+[^swisstopo]: From the excellent [swisstopo](https://map.geo.admin.ch/).
+[^yaml]: In which JSON and YAML were short-lived characters. 
+[^fsar]: [DLR's airborne F-SAR](https://www.dlr.de/hr/en/desktopdefault.aspx/tabid-2326/3776_read-5691/)

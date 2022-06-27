@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.377">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Luke McQuade">
+
+<title>Highlights of GeoPython 22</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link id="quarto-text-highlighting-styles" href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Highlights of GeoPython 22</h1>
+</div>
+
+
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Luke McQuade </p>
+          </div>
+  </div>
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="status-draft" class="level2">
+<h2 class="anchored" data-anchor-id="status-draft">STATUS: DRAFT</h2>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>GeoPython 2022 took place in Basel, Switzerland, from 20th to 22nd June. As for many, it was my first conference in a while. I attended with two hats - as a student of Earth Observation (EO) and geo-data science, and as a software engineer working on a <a href="https://sen2cube.at/">semantic datacube platform</a>.</p>
+<p>The venue was the FHNW<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> campus - an epic, inside-out-brutalist, Escher-tinged building. Think, <em>Techno Valhalla</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fhnw-inside.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">The FHNW interior.</figcaption><p></p>
+</figure>
+</div>
+<p>From a high-level view, the most striking thing about the conference was the sheer variety of the talks, especially given its size (approx. 100 on-site attendees). Talks ranged from software engineering fundamentals (<a href="https://submit.geopython.net/geopython-2022/talk/3RGDQM/">static typing with mypy, by Michal Gutowski</a>) to cutting edge applied research (<a href="https://submit.geopython.net/geopython-2022/talk/XFLFUB/">Sylvia Schmitz’s talk</a> on using UMAP<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> for PolInSAR<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="talk-spectrum.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">The spectrum of talks <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</figcaption><p></p>
+</figure>
+</div>
+<p>Note: I’m quite new to the geospatial field - I have a background mainly as a software engineer, with some signal processing knowledge - so take some of these opinions with a pinch of salt.</p>
+</section>
+<section id="personal-highlights" class="level2">
+<h2 class="anchored" data-anchor-id="personal-highlights">Personal Highlights</h2>
+<p>I have limited time, so these personal highlights are the most relevant to my work or studies. Rather than give a talk-by-talk run-through, I will discuss the content by theme, because sometimes multiple talks pulled on different threads of the same idea. I thoroughly enjoyed all the sessions I attended, and learned something valuable from each one.</p>
+<section id="types-and-validation-software-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="types-and-validation-software-engineering">Types and Validation (Software Engineering)</h3>
+<p>An interesting discussion arose regarding static-typing (with <a href="https://github.com/python/mypy">mypy</a>) vs runtime-typing (with <a href="https://github.com/agronholm/typeguard">typeguard</a>). In summary, runtime type-checking has the strongest guarantees of safety, but the performance hit is a tradeoff. I’ve gone through a similar decision process in the TypeScript world and my conclusions were that the optimal solution is probably to use a bit of both - apply validation at the IO boundaries<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, and rely on static-typing for the rest of the code.</p>
+<p><a href="https://pydantic-docs.helpmanual.io/">Pydantic</a> was brought up in the <a href="https://submit.geopython.net/geopython-2022/talk/YX9VBG/">QGreenland talk</a>, as <a href="https://www.qgreenland.org/our-team">Trey Stafford</a> discussed the evolution of their custom configuration solutions<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. This is a library for configuration management using Python files, and could be very useful. Though, care has to be taken with user-supplied config files from a security perspective.</p>
+</section>
+<section id="scaling-up-software-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="scaling-up-software-engineering">Scaling Up (Software Engineering)</h3>
+<p>As we’re effectively working with ♾GB of data, performance-tuning and scaling is an important topic, and many of the talks were about some aspect of this. At single-machine scale, <a href="https://numba.pydata.org/">Numba</a> was introduced as part of <a href="https://submit.geopython.net/geopython-2022/speaker/XRNGVX/">Brendan Collins</a>’ talk <em>Who Said Wrangling Geospatial Data at Scale was Easy?</em>. Numba is a just-in-time compiler which compiles functions as though they were C code, rather than interpreted line-by-line as per regular Python<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. There are further features to enable multi-processing and running code on CUDA-capable GPUs<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. This however, was part of something bigger: <a href="https://xarray-spatial.org/">Xarray-spatial</a> combines <a href="https://docs.xarray.dev/en/stable/">xarray</a>, Numba and <a href="https://www.dask.org/">Dask</a> to perform large-scale distributed raster analysis.</p>
+<p>A valuable lesson on xarray came earlier from <a href="https://submit.geopython.net/geopython-2022/speaker/RMQRA8/">Donjeta Runjeva</a> in her <a href="https://submit.geopython.net/geopython-2022/talk/YSYLJS/">talk</a> on <a href="https://en.seges.dk/">SEGES</a>’ Danish agricultural data cube: xarray works on regular grids, which multi-temporal satellite imagery does not always nicely fit into, e.g., an area of interest spanning boundaries of tiles captured on different days.</p>
+<p>Moving into the vector domain, a major development from the <a href="https://geopandas.org/en/stable/">GeoPandas</a> team is <a href="https://github.com/geopandas/dask-geopandas">Dask-GeoPandas</a>. This offers a similar API to GeoPandas, but behind-the-scenes builds a Dask task graph and performs spatial partitioning using space-filling curves<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. It’s still being built; there are currently some limitations, which were well explained, including:</p>
+<ul>
+<li>Accurately determining memory requirements for the scheduler is still a work-in-progress.<br>
+</li>
+<li>Operations that span partitions, i.e., require some overlap, require some manual work.</li>
+</ul>
+<p>There was a workshop on Day 3, where we got to try this out. There is a Jupyter notebook available that anyone can try (though it can take a little while to get the environment set up): <a href="https://github.com/martinfleis/dask-geopandas-tutorial"><em>Dask-GeoPandas introduction tutorial</em></a>.</p>
+</section>
+<section id="polinsar-analysis-remote-sensing" class="level3">
+<h3 class="anchored" data-anchor-id="polinsar-analysis-remote-sensing">PolInSAR Analysis (Remote Sensing)</h3>
+<p>Being from the North of England, where a cloud-free day is a rare treat, weather-agnostic synthetic aperture radar (SAR) has become one of my favourite topics. Interpreting SAR data is notoriously difficult<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>, and squeezing every drop of information out of an instrument’s available measures is a useful and interesting problem area. <a href="https://submit.geopython.net/geopython-2022/talk/XFLFUB/">Sylvia Schmitz</a>’s talk on exploratory analysis and visualization of high-dimensional remote sensing data introduced some fascinating approaches using Uniform Manifold Approximation and Projection (UMAP) - a non-linear dimension reduction algorithm. I would need to spend some more time to fully understand the details, but Sylvia demonstrated being able to transform a multi-band, quad-pol SAR<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> feature space containing ~100 dimensions into clearly separated clusters representing various land-cover classes. Full details are in her paper, <a href="https://www.scilit.net/article/c54d4ddc15508459e93b8d8f7d12cd84"><em>Evaluating uniform manifold approximation and projection for dimension reduction and visualization of PolInSAR features</em></a>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="polinsar-umap-f1-extract.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Extract of Figure 1 from <em><a href="https://www.scilit.net/article/c54d4ddc15508459e93b8d8f7d12cd84">S. Schmitz et al, 2021</a></em>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</figcaption><p></p>
+</figure>
+</div>
+<p>Some other related resources:</p>
+<ul>
+<li><a href="https://umap-learn.readthedocs.io/en/latest/">UMAP: Uniform Manifold Approximation and Projection for Dimension Reduction</a><br>
+</li>
+<li><a href="https://pair-code.github.io/understanding-umap/">Understanding UMAP</a></li>
+</ul>
+</section>
+<section id="crop-classification-with-similarity-metrics-remote-sensing" class="level3">
+<h3 class="anchored" data-anchor-id="crop-classification-with-similarity-metrics-remote-sensing">Crop Classification with Similarity Metrics (Remote Sensing)</h3>
+<p><a href="https://www.xing.com/profile/Dimo_Dimov">Dimo Dimov</a> from <a href="https://www.geocledian.com/">Geocledian</a> presented an approach for crop classification using multi-spectral imagery, which instead of classic global indexes such as NDVI or convolutional approaches, used localised similarity metrics within a 5km radius. This may be less sensitive to changes in image characteristics such as world region or atmospheric conditions, or perform better than typical spectral learning approaches, wrt. accuracy or computation requirements. A corresponding paper is available: <a href="https://www.researchgate.net/publication/360397035_Classification_of_Remote_Sensing_Time_Series_and_Similarity_Metrics_for_Crop_Type_Verification"><em>Classification of remote sensing time series and similarity metrics for crop type verification</em></a>. From the abstract: “Overall, the achieved classification accuracy for more than 67 crop types scores more than 80%”.</p>
+</section>
+<section id="deep-learningneural-networks" class="level3">
+<h3 class="anchored" data-anchor-id="deep-learningneural-networks">Deep Learning/Neural Networks</h3>
+<p><a href="https://www.fhnw.ch/de/personen/adrian-meyer">Adrian Meyer</a> and <a href="https://www.fhnw.ch/de/personen/martin-christen">Martin Christen</a> hosted the workshop, <em>Applied Semantic Segmentation for Large Scale Aerial Imagery</em>, which took us through the end-to-end process of labelling, training and running inferences of a GPU-accellerated <a href="https://pytorch.org/">PyTorch</a> deep learning model for the classification of 10cm aerial imagery<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a>. There was an introduction to <a href="https://segments.ai/">segments.ai</a> for labelling and managing images, and a <a href="https://colab.research.google.com/">Colab</a> notebook took us through the rest of the steps.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dl-training.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Training the model.</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="dl-out-ex.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Sample classification result.</figcaption><p></p>
+</figure>
+</div>
+<p><a href="https://github.com/carlos-gg/dl4ds">DL4DS (Deep Learning for empirical DownScaling)</a> was presented by creator <a href="https://submit.geopython.net/geopython-2022/speaker/ASEQ77/">Carlos Gonzalez</a>, and is a framework allowing bespoke DL down-scaling/super-resolution networks to be constructed using building blocks from different techniques. It’s designed with climate-modelling in mind but should be applicable to other application areas.</p>
+</section>
+<section id="teaching-programming-to-geographers" class="level3">
+<h3 class="anchored" data-anchor-id="teaching-programming-to-geographers">Teaching Programming to Geographers</h3>
+<p>Geospatial analysis and communication involves using complex, highly abstracted tools and libraries. I grew up frying electronic components for fun, and it’s unrealistic to expect everyone to have a similar background. So, I was very interested to hear from <a href="https://submit.geopython.net/geopython-2022/speaker/RYYCFX/">Barend Köbben</a> about the teaching methodology developed for <a href="https://www.itc.nl/">ITC</a>’s masters programme: Which parts of computer science and software engineering to include, and which to skip; the make-up of assignments and exercises.</p>
+<p>Barend has kindly allowed me to include one of the key slides:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="teaching-geopython-18.png" class="img-fluid figure-img"></p>
+<p></p><figcaption aria-hidden="true" class="figure-caption">Teaching GeoPython at ITC. © Barend Köbben.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="some-other-good-stuff" class="level3">
+<h3 class="anchored" data-anchor-id="some-other-good-stuff">Some Other Good Stuff</h3>
+<ul>
+<li><p><a href="https://anitagraser.com/about/">Anita Graser</a>’s <a href="https://github.com/anitagraser/movingpandas">MovingPandas</a>: Adds multi-temporal capabilities to GeoPandas, supporting things like trajectory mapping. I think this could be very useful for habitat mapping<a href="#fn13" class="footnote-ref" id="fnref13" role="doc-noteref"><sup>13</sup></a>.</p></li>
+<li><p><a href="https://github.com/geopython/pygeofilter">pygeofilter</a>, from <a href="https://github.com/constantinius">Fabian Schindler</a>: Like a Babel Fish for spatial filter languages and APIs.</p></li>
+<li><p><a href="https://www.colorado.edu/geography/johannes-uhl-0">Johannes Uhl</a>’s <a href="https://github.com/johannesuhl/mapprocessor">historical Map Processor</a>: A pipeline to mosiac USGS historical maps and allow them to be spatially queried as though they were a satellite timeseries starting in the 1800s.</p></li>
+</ul>
+</section>
+</section>
+<section id="wrapping-up" class="level2">
+<h2 class="anchored" data-anchor-id="wrapping-up">Wrapping up</h2>
+<p>Huge thanks to the <a href="https://twitter.com/GeoPythonConf"><span class="citation" data-cites="GeoPythonConf">@GeoPythonConf</span></a> team and the presenters, and my department, <a href="https://www.plus.ac.at/geoinformatik/?lang=en">Z_GIS</a>, for funding the trip.</p>
+<p>Please <a href="https://lukesdm.github.io/geoportfolio/about">get in touch</a> with any questions or corrections, or if I’ve mentioned you and would prefer a different profile link to the one I chose.</p>
+</section>
+
+
+
+<div id="quarto-appendix" class="default"><section id="about" class="level2 appendix"><h2 class="quarto-appendix-heading">About</h2><div class="quarto-appendix-contents">
+
+<p>Made with <a href="https://quarto.org/">Quarto</a>. Source: TODO.</p>
+</div></section><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.fhnw.ch/en/">University of Applied Sciences and Arts Northwestern Switzerland</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://umap-learn.readthedocs.io/en/latest/">Uniform Manifold Approximation and Projection for Dimension Reduction</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://www.semanticscholar.org/paper/Polarimetric-SAR-Interferometry-(-PolInSAR-)-and-Kumar-Khati/4e061135474342eaa48e1f4bf87f5fcabd6756c9">Polarimetric synthetic aperture radar interferometry</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>Based on <a href="https://commons.wikimedia.org/wiki/File:Prism-rainbow-black.svg">Prism-rainbow-black.svg: Suidroot, Sceptre, CC BY-SA 3.0</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>I.e., verify the response from web request or content of a read file has the expected structure<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>In which JSON and YAML were short-lived characters.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p>Typically <a href="https://en.wikipedia.org/wiki/CPython">CPython</a><a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>Numba - <a href="https://numba.pydata.org/#:~:text=Parallelize%20Your%20Algorithms">Parallelize Your Algorithms</a><a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p><img src="220px-Hilbert-curve_rounded-gradient-animated.gif" class="img-fluid" alt="Hilbert Curve, 6 iterations"> E.g., the Hilbert Curve (<a href="https://en.wikipedia.org/wiki/Hilbert_curve#/media/File:Hilbert-curve_rounded-gradient-animated.gif">TimSauder, Creative Commons CC BY-SA 4.0</a>)<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p><a href="https://crisp.nus.edu.sg/~research/tutorial/sar_int.htm">CRISP - Interpreting SAR Images</a><a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11" role="doc-endnote"><p><a href="https://www.dlr.de/hr/en/desktopdefault.aspx/tabid-2326/3776_read-5691/">DLR’s airborne F-SAR</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12" role="doc-endnote"><p>From the excellent <a href="https://map.geo.admin.ch/">swisstopo</a>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn13" role="doc-endnote"><p><a href="http://news.bbc.co.uk/2/hi/technology/6188482.stm">Snow leopard fitted with GPS tag</a><a href="#fnref13" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Reuse</h2><div quarto-reuse="quarto-reuse" class="quarto-appendix-contents"><a rel="license" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></div></section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
