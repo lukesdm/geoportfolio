@@ -10,7 +10,7 @@ format:
 
 ## Introduction
 
-GeoPython 2022 took place in Basel, Switzerland, from 20th to 22nd June. As for many, it was my first conference in a while. I attended with two hats - as a student of Earth Observation (EO) and geo-data science, and as a software engineer working on a [semantic datacube platform](https://sen2cube.at/).
+GeoPython 2022 took place in Basel, Switzerland, from 20th to 22nd June. As for many, it was my first conference in a while. I attended with two hats - as a student of Earth Observation (EO) and geo-data science, and as a software engineer working on [Z_GIS EO Analytics](https://www.plus.ac.at/geoinformatik/research/research-areas/eo-analytics/?lang=en)' [semantic datacube platform](https://sen2cube.at/).
 
 The venue was the FHNW[^FHNW] campus - an epic, inside-out-brutalist, Escher-tinged building. Think, *Techno Valhalla*.
 
