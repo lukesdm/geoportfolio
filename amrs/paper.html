@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<meta name="generator" content="quarto-1.0.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Luke McQuade (luke.mcquade@stud.sbg.ac.at)">
+<meta name="dcterms.date" content="2022-08-13">
+
+<title>Semi-Automatic Mapping of the 2021 La Palma Tajogaite Eruption using Sentinel-1 Data</title>
+<style class="anchorjs"></style><style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+
+<script src="./paper_files/clipboard.min.js.download"></script>
+<script src="./paper_files/quarto.js.download"></script>
+<script src="./paper_files/popper.min.js.download"></script>
+<script src="./paper_files/tippy.umd.min.js.download"></script>
+<script src="./paper_files/anchor.min.js.download"></script>
+<link href="./paper_files/tippy.css" rel="stylesheet">
+<link href="./paper_files/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="./paper_files/bootstrap.min.js.download"></script>
+<link href="./paper_files/bootstrap-icons.css" rel="stylesheet">
+<link href="./paper_files/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  <script src="./paper_files/tex-chtml-full.js.download" type="text/javascript"></script><style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style>
+
+<style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+_::-webkit-full-page-media, _:future, :root mjx-container {
+  will-change: opacity;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  border-collapse: collapse;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-msub {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c1D6FE.TEX-I::before {
+  padding: 0.441em 0.543em 0.216em 0;
+  content: "\3B3";
+}
+
+mjx-c.mjx-c30::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "0";
+}
+</style></head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Semi-Automatic Mapping of the 2021 La Palma <em>Tajogaite</em> Eruption using Sentinel-1 Data</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Luke McQuade (luke.mcquade@stud.sbg.ac.at) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 13, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#abstract" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>On Sunday 19th September 2021, the Canarian island of La Palma experienced a stratovolcanic eruption on the Cumbre Veija ridge, which lasted approximately 3 months. An approach based on the principles of geographical object-based image analysis (GEOBIA) is presented here for the semi-automatic mapping/classification of active lava flows from Sentinel-1 backscatter data. The approach is based on SLIC0<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn1" class="footnote-ref" id="fnref1" role="doc-noteref" aria-expanded="false"><sup>1</sup></a> ‘superpixel’ segmentation, simple statistical features and a neighbourhood-based region growing algorithm.</p>
+<p>Results are mixed, and more successful for some days’ images than others. Transferability is still to be investigated.</p>
+<p>Python scripts with the full implementation are available in the GitHub repository <a href="https://github.com/lukesdm/la-palma-lava-mapping-nb">github.com/lukesdm/la-palma-lava-mapping-nb</a> (license: To be decided).</p>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#introduction" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>On Sunday 19th September 2021, the Canarian island of La Palma experienced a stratovolcanic eruption (later named <em>Tajogaite</em><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn2" class="footnote-ref" id="fnref2" role="doc-noteref" aria-expanded="false"><sup>2</sup></a>) on the Cumbre Veija ridge. The eruption lasted until Tuesday 13th December - almost 3 months. Due to early detection and action of the local authorities, there was no direct loss of human life. However, there was significant damage to infrastructure, buildings and land <span class="citation" data-cites="Carracedo_2022">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-Carracedo_2022" role="doc-biblioref" aria-expanded="false">Carracedo et al. 2022</a>]</span>.</p>
+<p>Eruptions are often accompanied by large amounts of smoke and particulates, which can reduce the effectiveness of optical imaging satellites for monitoring. The Copernicus Sentinel-1<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn3" class="footnote-ref" id="fnref3" role="doc-noteref" aria-expanded="false"><sup>3</sup></a> synthetic aperture radar (SAR) mission, whose data is freely available, has the ability to penetrate clouds, darkness and smoke plumes, and so can be an effective tool in these situations. This data can be difficult to interpret, however <span class="citation" data-cites="Shahzad_2019">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-Shahzad_2019" role="doc-biblioref" aria-expanded="false">Shahzad et al. 2019</a>]</span>.</p>
+<p>An approach based on the tools and principles of GEOBIA<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn4" class="footnote-ref" id="fnref4" role="doc-noteref" aria-expanded="false"><sup>4</sup></a> is presented here for the semi-automatic mapping/classification of active lava flows - initially for the La Palma <em>Cumbre Vieja</em> event, with transferability still to be investigated. An overview of the approach is shown in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-overview">Figure&nbsp;1</a>. Preliminary work using a change-detection approach was investigated, and is discussed briefly in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#sec-prelim-work">Section&nbsp;6</a>.</p>
+<p>Python scripts with the full implementation are available in the GitHub repository <a href="https://github.com/lukesdm/la-palma-lava-mapping-nb">github.com/lukesdm/la-palma-lava-mapping-nb</a> (license: To be decided).</p>
+<div id="fig-overview" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-overview.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 1: Overview of our approach.</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-overview" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+</section>
+<section id="method" class="level2">
+<h2 class="anchored" data-anchor-id="method">Method<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#method" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<section id="data-sources" class="level3">
+<h3 class="anchored" data-anchor-id="data-sources">Data sources<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#data-sources" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h3>
+<p>The dataset is a series of Sentinel-1 ground-range-detected (GRD) images captured on the dates before, during and after the eruption, with the characteristics given in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#tbl-s1-params">Table&nbsp;1</a>. The series of images is shown in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-s1-series">Figure&nbsp;2</a>.</p>
+<p>For reference, a series of maps produced by the Copernicus Emergency Rapid Mapping group are referred to. These were created with the aid of high-resolution sources of various types, such as COSMO-Skymed<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn5" class="footnote-ref" id="fnref5" role="doc-noteref" aria-expanded="false"><sup>5</sup></a>, a high resolution X-band SAR mission <span class="citation" data-cites="EMSR546">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-EMSR546" role="doc-biblioref" aria-expanded="false">Copernicus Emergency Management Service 2021</a>]</span>. One such map is shown in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-emsr546">Figure&nbsp;3</a>. Although there are caveats about accuracy from the Rapid Mapping team, no corrections were issued about this product as they otherwise would, if significant issues had been identified.</p>
+<div id="tbl-s1-params" class="anchored">
+<table class="table">
+<caption>Table 1: Sentinel-1 product and pre-processing choices</caption>
+<colgroup>
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Chosen value</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Acquisition mode</td>
+<td>Interferometric wide swath (IW)</td>
+<td>Availability in geographic location.</td>
+</tr>
+<tr class="even">
+<td>Signal type</td>
+<td>Backscatter intensity (linear) - <span class="math inline"><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" tabindex="0" ctxtmenu_counter="0" style="font-size: 113.1%; position: relative;"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D6FE TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em; margin-left: -0.025em;"><mjx-texatom size="s" texclass="ORD"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>γ</mi><mrow data-mjx-texclass="ORD"><mn>0</mn></mrow></msub></math></mjx-assistive-mml></mjx-container></span> (radiometrically terrain corrected)</td>
+<td>Seemed to give clearest differentiation for visual inspection.</td>
+</tr>
+<tr class="odd">
+<td>Polarisation</td>
+<td>VV</td>
+<td>Seemed to give clearest differentiation for visual inspection.</td>
+</tr>
+<tr class="even">
+<td>Orbit</td>
+<td>Ascending</td>
+<td>Captures were the closest dates matching the event timeline.</td>
+</tr>
+<tr class="odd">
+<td>DEM correction</td>
+<td>30m Mapzen</td>
+<td>Highest-resolution available choice without additional pre-processing.</td>
+</tr>
+<tr class="even">
+<td>Ground-sampling distance</td>
+<td>10m</td>
+<td>This was the highest available.</td>
+</tr>
+</tbody>
+</table>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#tbl-s1-params" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<div id="fig-s1-series" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-s1-series.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 2: Sentinel-1 images during and adjacent to the eruption.</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-s1-series" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<div id="fig-emsr546" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-emsr546.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 3: Render of Copernicus Rapid Mapping product EMSR 546 (produced 2021-11-15) (source: <span class="citation" data-cites="EMSR546">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-EMSR546" role="doc-biblioref" aria-expanded="false">Copernicus Emergency Management Service 2021</a>]</span>).</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-emsr546" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+</section>
+<section id="segmentation" class="level3">
+<h3 class="anchored" data-anchor-id="segmentation">Segmentation<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#segmentation" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h3>
+<p>Radar speckle<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn6" class="footnote-ref" id="fnref6" role="doc-noteref" aria-expanded="false"><sup>6</sup></a>, geometric distortions, and other properties make analysis at the single-pixel level error-prone. There are various filtering methods available that attempt to counter this. However, there is often a risk of losing spatial or textural information this way <span class="citation" data-cites="Painam_2021">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-Painam_2021" role="doc-biblioref" aria-expanded="false">Painam and Manikandan 2021</a>]</span>.</p>
+<p>Inspecting the image series, it can be seen that active lava flow can be difficult or impossible to differentiate from its surroundings. It needs to be examined with more context. Superpixel segmentation allows for this - it can be thought of as a sort of ‘smart chessboard’ segmentation, as it divides the image into similar sized segments, which roughly follow object borders <span class="citation" data-cites="Achanta_2012">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-Achanta_2012" role="doc-biblioref" aria-expanded="false">Achanta et al. 2012</a>]</span>. The implementation chosen was the <em>SLIC0</em> algorithm of the scikit-image Python package<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn7" class="footnote-ref" id="fnref7" role="doc-noteref" aria-expanded="false"><sup>7</sup></a>. Despite being labelled a ‘zero parameter’ algorithm, there are still some high-level parameters to choose - the number of segments, and the compactness. For the area of interest (AoI), a segment count of 5000<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn8" class="footnote-ref" id="fnref8" role="doc-noteref" aria-expanded="false"><sup>8</sup></a> produces superpixels of approximately 15-20 pixels across (150 to 200m), therefore encompassing groups of around 300 pixels (3ha). This balances spatial resolution with statistical usefulness at the scales of the image objects of interest (reference maps show active lava flow covering approximately 1000ha as of 2021-11-15). The compactness parameter determines the trade-off between regularity and boundary-recall <span class="citation" data-cites="Schick_2012">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-Schick_2012" role="doc-biblioref" aria-expanded="false">Schick et al. 2012</a>]</span>. As no speckle-filtering was applied, object boundaries were often unclear, so a low compactness of 0.1 was chosen, and regularity was prioritized. This regularity was convenient for subsequent neighbourhood calculations. <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-seg-results">Figure&nbsp;4</a> shows the results of such a segmentation.</p>
+<div id="fig-seg-results" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-seg-results.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 4: SLIC0 segmentation results for image date 2021-11-15, number of segments=5000, compactness=0.1.</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-seg-results" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+</section>
+<section id="feature-engineering" class="level3">
+<h3 class="anchored" data-anchor-id="feature-engineering">Feature engineering<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#feature-engineering" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h3>
+<section id="segment-statistics" class="level4">
+<h4 class="anchored" data-anchor-id="segment-statistics">Segment Statistics<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#segment-statistics" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h4>
+<p>The backscatter mean and standard deviation within each segment were selected as building blocks for the classification approach. These are both heavily influenced by the surface type at the scales of interest. This was determined by taking samples of various land-cover/land-use (LCLU) types, and comparing their distributions. The LCLU type was determined from recent high-resolution ortho-imagery and maps produced by GrafCan<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn9" class="footnote-ref" id="fnref9" role="doc-noteref" aria-expanded="false"><sup>9</sup></a>. The sample locations are shown in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-lclu-samples">Figure&nbsp;5</a>, distributions of their statistical features in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-seg-stats-distributions">Figure&nbsp;6</a>, and an explanation of the sample labels in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#tbl-lclu-labels">Table&nbsp;2</a>. As can be seen, there is significant overlap between some LCLU types, especially vegetated areas. Interestingly, excluding outliers, the lava field of the 1971 eruption did not show a large amount of overlap with the means or standard deviations of the segments of the 2021 eruption. The mean backscatter of the 1971 field is lower, which could be an indicator that it has a smoother surface; it could also be due to topographical effects of its surroundings - further investigation is needed.</p>
+<div id="tbl-lclu-labels" class="anchored">
+<table class="table">
+<caption>Table 2: Explanation of LCLU sample labels</caption>
+<thead>
+<tr class="header">
+<th>Label</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>active_lava</td>
+<td>Region of active lava flow, as of 2021-11-15.</td>
+</tr>
+<tr class="even">
+<td>mixed_dense</td>
+<td>Mix of dense built-up and agricultural land, often including covered plantations.</td>
+</tr>
+<tr class="odd">
+<td>mixed_scrub</td>
+<td>Mix of sparsely built-up land mostly surrounded by scrub.</td>
+</tr>
+<tr class="even">
+<td>pasture</td>
+<td>Mostly pasture (amongst sparsely built land/others).</td>
+</tr>
+<tr class="odd">
+<td>recent_lava</td>
+<td>Lava field of the previous eruption of 1971<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fn10" class="footnote-ref" id="fnref10" role="doc-noteref" aria-expanded="false"><sup>10</sup></a>.</td>
+</tr>
+<tr class="even">
+<td>sparse_coniferous</td>
+<td>Coniferous forest, which is typically sparse in the Canaries.</td>
+</tr>
+<tr class="odd">
+<td>ocean</td>
+<td>Ocean (Atlantic).</td>
+</tr>
+</tbody>
+</table>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#tbl-lclu-labels" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<div id="fig-lclu-samples" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-lclu-samples.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 5: LCLU sample locations</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-lclu-samples" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<div id="fig-seg-stats-distributions" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="./paper_files/fig-seg-means-dists.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="./paper_files/fig-seg-stds-dists.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure 6: Box and violin plots of the distributions of segment statistical features across various LCLU types.</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="local-lava-likeness" class="level4">
+<h4 class="anchored" data-anchor-id="local-lava-likeness">Local lava-likeness<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#local-lava-likeness" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h4>
+<p>A local <em>lava-likeness</em> metric was derived from the similarities of a segment’s mean and standard deviation to those of a user-defined reference sample.</p>
+<section id="reference-sample" class="level5">
+<h5 class="anchored" data-anchor-id="reference-sample">Reference sample<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#reference-sample" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h5>
+<p>Given that the area of lava flow grows during an eruption, a viable reference sample covering active lava that is valid early in the eruption will be also be valid later in the eruption. But, as atmospheric and ground conditions affect the received backscatter readings and lead to variations across a time series (see, e.g., <span class="citation" data-cites="Doblas_2020">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-Doblas_2020" role="doc-biblioref" aria-expanded="false">Doblas et al. 2020</a>]</span>), the statistical features of the underlying image objects have to be recalculated for any given day.</p>
+<section id="similarity-functions" class="level6">
+<h6 class="anchored" data-anchor-id="similarity-functions">Similarity functions<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#similarity-functions" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h6>
+<p>Similarity functions composed of piecewise linear segments around the sample’s range and quartiles were used, such as those in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-stat-similarity-funcs">Figure&nbsp;7</a>. Their implementation resembles the Python code in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func">Listing&nbsp;1</a>. The statistical similarities are then combined to a single metric by taking their mean, as in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-local-lava-likeness">Listing&nbsp;2</a>.</p>
+<div id="lst-mean-similarity-func" class="listing">
+<p>Listing 1: Mean similarity calculation (Python)</p>
+<div class="sourceCode" id="lst-mean-similarity-func" data-lst-cap="Mean similarity calculation (Python)"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="lst-mean-similarity-func-1"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy</span>
+<span id="lst-mean-similarity-func-2"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-similarity-func-3"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calc_mean_similarity(segment_data, reference_sample):</span>
+<span id="lst-mean-similarity-func-4"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-4" aria-hidden="true" tabindex="-1"></a>    low <span class="op">=</span> reference_sample[<span class="st">"mean"</span>].quantile(<span class="fl">0.0</span>)</span>
+<span id="lst-mean-similarity-func-5"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-5" aria-hidden="true" tabindex="-1"></a>    q1 <span class="op">=</span> reference_sample[<span class="st">"mean"</span>].quantile(<span class="fl">0.25</span>)</span>
+<span id="lst-mean-similarity-func-6"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-6" aria-hidden="true" tabindex="-1"></a>    q3 <span class="op">=</span> reference_sample[<span class="st">"mean"</span>].quantile(<span class="fl">0.75</span>)</span>
+<span id="lst-mean-similarity-func-7"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-7" aria-hidden="true" tabindex="-1"></a>    high <span class="op">=</span> reference_sample[<span class="st">"mean"</span>].quantile(<span class="fl">1.0</span>)</span>
+<span id="lst-mean-similarity-func-8"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="lst-mean-similarity-func-9"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> numpy.interp(</span>
+<span id="lst-mean-similarity-func-10"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-10" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> segment_data[<span class="st">"mean"</span>],</span>
+<span id="lst-mean-similarity-func-11"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-11" aria-hidden="true" tabindex="-1"></a>        xp <span class="op">=</span> [low, q1, q3, high],</span>
+<span id="lst-mean-similarity-func-12"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-12" aria-hidden="true" tabindex="-1"></a>        fp <span class="op">=</span> [<span class="fl">0.25</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fl">0.25</span>],</span>
+<span id="lst-mean-similarity-func-13"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-13" aria-hidden="true" tabindex="-1"></a>        left <span class="op">=</span> <span class="dv">0</span>,</span>
+<span id="lst-mean-similarity-func-14"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-mean-similarity-func-14" aria-hidden="true" tabindex="-1"></a>        right <span class="op">=</span> <span class="dv">0</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="lst-local-lava-likeness" class="listing">
+<p>Listing 2: Local lava-likeness calculation (Python)</p>
+<div class="sourceCode" id="lst-local-lava-likeness" data-lst-cap="Local lava-likeness calculation (Python)"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="lst-local-lava-likeness-1"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-local-lava-likeness-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> local_lava_likeness(mean_similarity, std_similarity):</span>
+<span id="lst-local-lava-likeness-2"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-local-lava-likeness-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (mean_similarity <span class="op">+</span> std_similarity) <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="fig-stat-similarity-funcs" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="./paper_files/fig-mean-similarity-func.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="./paper_files/fig-std-similarity-func.png" class="img-fluid figure-img"></p>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure 7: Plots of statistical similarity functions against distribution of active lava reference sample segments (of 2021-11-15).</figcaption><p></p>
+</figure>
+</div>
+<p><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-lll-map">Figure&nbsp;8</a> shows the result of this for 2021-11-15 with reference sample of approximately 50 segments. Some observations:</p>
+<ul>
+<li>The area directly around the vents show low lava-likeness. This is elaborated on in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#sec-discussion">Section&nbsp;5</a>.</li>
+<li>There is clustering where expected - within the active flow - but also pockets in several parts of the map outside the flow, especially to the north east. This shows this metric alone is not suitable for determining the active flow.</li>
+</ul>
+<div id="fig-lll-map" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-lll-map.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 8: Map showing the calculated segment local lava likenesses from an associated reference sample, for image date 2021-11-15.</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-lll-map" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+</section>
+</section>
+</section>
+<section id="neighbourhood-based-lava-likeness" class="level4">
+<h4 class="anchored" data-anchor-id="neighbourhood-based-lava-likeness">Neighbourhood-based lava-likeness<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#neighbourhood-based-lava-likeness" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h4>
+<p>Based on the premise that lava is more likely to be present alongside other lava, i.e., there is strong positive spatial autocorrelation, segments’ neighbourhoods were incorporated into the classification. Based on the semi-regularity of the superpixels, the neighbourhood was defined as simply the adjacent superpixels, i.e., those with a shared border. A <em>neighbourhood lava-likeness</em> metric was devised by adding the mean <em>local lava-likeness</em> of a segment’s neighbourhood. The implementation resembles the python code in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-neighbourhood-lava-likeness">Listing&nbsp;3</a>.</p>
+<div id="lst-neighbourhood-lava-likeness" class="listing">
+<p>Listing 3: Neighbourhood lava-likeness calculation (Python)</p>
+<div class="sourceCode" id="lst-neighbourhood-lava-likeness" data-lst-cap="Neighbourhood lava-likeness calculation (Python)"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="lst-neighbourhood-lava-likeness-1"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-neighbourhood-lava-likeness-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> neighbourhood_lava_likeness(all_segments, segment):</span>
+<span id="lst-neighbourhood-lava-likeness-2"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-neighbourhood-lava-likeness-2" aria-hidden="true" tabindex="-1"></a>    neighbors <span class="op">=</span> get_neighbours(all_segments, segment)</span>
+<span id="lst-neighbourhood-lava-likeness-3"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-neighbourhood-lava-likeness-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="lst-neighbourhood-lava-likeness-4"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-neighbourhood-lava-likeness-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
+<span id="lst-neighbourhood-lava-likeness-5"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-neighbourhood-lava-likeness-5" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.5</span> <span class="op">*</span> segment[<span class="st">"local_lava_likeness"</span>] <span class="op">+</span> </span>
+<span id="lst-neighbourhood-lava-likeness-6"><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#lst-neighbourhood-lava-likeness-6" aria-hidden="true" tabindex="-1"></a>        <span class="fl">0.5</span> <span class="op">*</span> neighbors[<span class="st">"local_lava_likeness"</span>].<span class="bu">sum</span>() <span class="op">/</span> <span class="bu">len</span>(neighbors) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="region-growing" class="level3">
+<h3 class="anchored" data-anchor-id="region-growing">Region growing<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#region-growing" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h3>
+<p>Expanding on the consideration of neighbourhood, a region-growing algorithm was devised: If a segment’s <em>neighbourhood lava-likeness</em> exceeds a pre-defined threshold, it gets added to a group, and its neighbouring segments are explored, and this is repeated recursively. The user must supply a starting ‘seed’ segment which is known to be in the active lava flow. This can be outside the reference sample area, which is potentially useful in cases where there are small breaks in the flow, such as the platform which formed when lava entered the sea.</p>
+<section id="threshold" class="level4">
+<h4 class="anchored" data-anchor-id="threshold">Threshold<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#threshold" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h4>
+<p>A threshold of 0.5 was chosen, which means at least 2 factors (mean similarity, standard deviation similarity, or those of the neighbourhood) are required to be significant in order for a segment to be classified as lava.</p>
+</section>
+</section>
+</section>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#results" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>The effectiveness of the approach can be evaluated by comparing the produced estimated flow with the maps produced by EMS Rapid Mapping, with limitations: There are time differences between the Sentinel-1 scene capture and that of the source imagery the EMS maps are based on, during which lava flow could vary. This is especially significant in the early days of the eruption. As such, the reference has not been included for those days as it is unreliable, and a visual comparison with the base imagery is recommended. A full quantitative assessment would be considered for further work. A selection of results, given typical reference samples and seed points, are shown in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-results">Figure&nbsp;9</a>.</p>
+<div id="fig-results" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<div id="fig-results-2021-09-28" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-results-2021-09-28.jpg" class="img-fluid figure-img" data-ref-parent="fig-results"></p>
+<p></p><figcaption class="figure-caption">(a) Estimated lava flow as of 2021-09-28 (event day 9). No reliable reference available.</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-results-2021-09-28" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<div id="fig-results-2021-10-16" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-results-2021-10-16.jpg" class="img-fluid figure-img" data-ref-parent="fig-results"></p>
+<p></p><figcaption class="figure-caption">(b) Estimated lava flow as of 2021-10-16 (event day 28).</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-results-2021-10-16" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<div id="fig-results-2021-11-15" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-results-2021-11-15.jpg" class="img-fluid figure-img" data-ref-parent="fig-results"></p>
+<p></p><figcaption class="figure-caption">(c) Estimated lava flow as of 2021-11-15 (event day 58).</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-results-2021-11-15" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<div id="fig-results-2021-12-03" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-results-2021-12-03.jpg" class="img-fluid figure-img" data-ref-parent="fig-results"></p>
+<p></p><figcaption class="figure-caption">(d) Estimated lava flow as of 2021-12-03 (event day 76).</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-results-2021-12-03" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+<p></p><figcaption class="figure-caption">Figure 9: Results of runs of the semi-automatic mapper for a selection of days during the eruption event.</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-results" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+</section>
+<section id="sec-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="sec-discussion">Discussion<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#sec-discussion" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>It can be seen from the results that the approach has mixed effectiveness, and clear limitations. The approach works better for the later days of the eruption, when a larger reference sample can be selected. The grown region often extends to the north-east, which is vegetated and has a similar backscatter response. A potential mitigation for this would be to incorporate a digital elevation model (DEM) into the approach, limiting the potential lava extent to flat or down-slope areas.</p>
+<p>There is consistently unclassified lava in the area around the vents: This is likely due to radar shadowing caused by the adjacent cone (see, e.g., <span class="citation" data-cites="RadarIma35">[<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#ref-RadarIma35" role="doc-biblioref" aria-expanded="false">Canada Centre for Mapping and Earth Observation</a>]</span>). If this is the case, it is unlikely we will be able to achieve an improved result without incorporating additional information sources.</p>
+<p>There are a number of other potential improvements to consider, for instance:</p>
+<ul>
+<li>Experiment further with algorithm parameter values.</li>
+<li>Investigate other textural statistical features of the superpixels, such as spatial autocorrelation (Moran’s I).</li>
+<li>Improve the effectiveness of the segmentation by pre-processing with, e.g., Sobel edge detection.</li>
+<li>Augment with available optical imagery.</li>
+</ul>
+<p>As mentioned, transferability of the approach was not investigated. There are two aspects to explore in further work: temporal transferability, i.e., <em>how effective is using a reference sample for one day on another day?</em>, and spatial transferability, i.e., <em>how effective is this approach for eruption events elsewhere?</em>.</p>
+</section>
+<section id="sec-prelim-work" class="level2">
+<h2 class="anchored" data-anchor-id="sec-prelim-work">Appendix: Preliminary work — change detection<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#sec-prelim-work" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<p>A convolutional change detection approach was investigated, but found to be ineffective. Whilst the lava platform which formed as lava entered the sea was made apparent, the land cover changes of interest were subtle and difficult to differentiate, due to the similarity of backscatter response of vegetated areas to the active lava flow. So, this approach was discarded. The most successful result is shown in <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-change-detection">Figure&nbsp;10</a>.</p>
+<div id="fig-change-detection" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="./paper_files/fig-change-detection.jpg" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure 10: Change-detection false-colour composite of the Cumbre Vieja eruption, using an ‘absolute mean difference’ filter (implemented in eCognition version 10.1) with a window size of 11 (data: ESA)</figcaption><p></p>
+</figure>
+<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fig-change-detection" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></div>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#references" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="ref-Achanta_2012" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Achanta, R., Shaji, A., Smith, K., Lucchi, A., Fua, P., and Süsstrunk, S.</span> 2012. <a href="https://doi.org/10.1109/tpami.2012.120"><span>SLIC</span> superpixels compared to state-of-the-art superpixel methods</a>. <em><span>IEEE</span> Transactions on Pattern Analysis and Machine Intelligence</em> <em>34</em>, 11, 2274–2282.
+</div>
+<div id="ref-RadarIma35" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Canada Centre for Mapping and Earth Observation</span>. Radar image distortions. <a href="https://www.nrcan.gc.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/microwave-remote-sensing/radar-image-distortions/9325">https://www.nrcan.gc.ca/maps-tools-and-publications/satellite-imagery-and-air-photos/tutorial-fundamentals-remote-sensing/microwave-remote-sensing/radar-image-distortions/9325</a>.
+</div>
+<div id="ref-Carracedo_2022" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Carracedo, J.C., Troll, V.R., Day, J.M.D., et al.</span> 2022. <a href="https://doi.org/10.1111/gto.12388">The 2021 eruption of the cumbre vieja volcanic ridge on la palma, canary islands</a>. <em>Geology Today</em> <em>38</em>, 3, 94–107.
+</div>
+<div id="ref-EMSR546" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Copernicus Emergency Management Service</span>. 2021. <a href="https://emergency.copernicus.eu/mapping/ems-product-component/EMSR546_AOI01_GRA_MONIT52_r1_RTP02/2">https://emergency.copernicus.eu/mapping/ems-product-component/EMSR546_AOI01_GRA_MONIT52_r1_RTP02/2</a>.
+</div>
+<div id="ref-Doblas_2020" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Doblas, J., Carneiro, A., Shimabukuro, Y., SantAnna, S., and Aragao, L.</span> 2020. <a href="https://doi.org/10.1109/lagirs48042.2020.9165566">Assessment of rainfall influence on sentinel-1 time series on amazonian tropical forests aiming deforestation detection improvement</a>. <em>2020 <span>IEEE</span> latin american <span>GRSS</span> &amp; <span>ISPRS</span> remote sensing conference (<span>LAGIRS</span>)</em>, <span>IEEE</span>.
+</div>
+<div id="ref-Painam_2021" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Painam, R.K. and Manikandan, S.</span> 2021. <a href="https://doi.org/10.1007/s12517-020-06416-1">A comprehensive review of <span>SAR</span> image filtering techniques: Systematic survey and future directions</a>. <em>Arabian Journal of Geosciences</em> <em>14</em>, 1.
+</div>
+<div id="ref-Schick_2012" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Schick, A., Fischer, M., and Stiefelhagen, R.</span> 2012. <a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html">Measuring and evaluating the compactness of superpixels</a>. <em>Proceedings of the 21st international conference on pattern recognition (ICPR2012)</em>, 930–934.
+</div>
+<div id="ref-Shahzad_2019" class="csl-entry" role="doc-biblioentry">
+<span class="smallcaps">Shahzad, M., Maurer, M., Fraundorfer, F., Wang, Y., and Zhu, X.X.</span> 2019. <a href="https://doi.org/10.1109/tgrs.2018.2864716">Buildings detection in <span>VHR</span> <span>SAR</span> images using fully convolution neural networks</a>. <em><span>IEEE</span> Transactions on Geoscience and Remote Sensing</em> <em>57</em>, 2, 1100–1116.
+</div>
+</div>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading" id="footnotes">Footnotes<a class="anchorjs-link " aria-label="Anchor" data-anchorjs-icon="" href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#footnotes" style="font: 1em / 1 anchorjs-icons; padding-left: 0.375em;"></a></h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p><a href="https://www.epfl.ch/labs/ivrl/research/slic-superpixels/#SLICO">Simple linear iterative clustering, zero-parameter version</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p><a href="https://www.tajogaite.es/">Volcán Tajogaite</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p><a href="https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-1">Copernicus Sentinel-1 mission</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p><a href="https://gisgeography.com/obia-object-based-image-analysis-geobia/">Geographical object-based image analysis</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p><a href="https://earth.esa.int/eogateway/missions/cosmo-skymed">COSMO-SkyMed</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p><a href="https://en.wikipedia.org/wiki/Speckle_(interference)">Speckle (interference)</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7" role="doc-endnote"><p><a href="https://scikit-image.org/docs/stable/auto_examples/segmentation/plot_segmentations.html">scikit-image - Comparison of segmentation and superpixel algorithms</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8" role="doc-endnote"><p>The actual number of segments produced may vary slightly due to image dimensions/characteristics.<a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9" role="doc-endnote"><p><a href="https://visor.grafcan.es/visorweb/default.php">GrafCan - Visor online GIS</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10" role="doc-endnote"><p><a href="https://en.wikipedia.org/wiki/Tenegu%C3%ADa#1971_eruption">Teneguía</a><a href="file:///C:/Users/luke/src/cde-work/lplm-am/lplm-notebook/paper.html#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
