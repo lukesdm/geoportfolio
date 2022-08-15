@@ -1,3 +1,5 @@
+[🛰 Z_GIS Summer School 2022: Multi-Sensor Earth Observation in Practice](misc/salzburg-summer-school.html)
+
 [🌍🐍 GeoPython 2022 - Personal Highlights](geopython22-report)
 
 [📄 Getting Started with the eCognition SDK](ecognition-sdk-starting) - A brief setup guide for the eCognition C++ SDK.
