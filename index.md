@@ -1,4 +1,4 @@
-[🌋 La Palma semi-automatic lava mapping](https://github.com/lukesdm/la-palma-lava-mapping-nb)
+[🌋 La Palma - Semi-Automatic Lava Mapping](https://github.com/lukesdm/la-palma-lava-mapping-nb)
 
 [🛰 Z_GIS Summer School 2022: Multi-Sensor Earth Observation in Practice](misc/salzburg-summer-school.html)
 
