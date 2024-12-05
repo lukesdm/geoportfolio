@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Install Bundler
-RUN gem install bundler
+RUN gem install bundler -v 2.4.22
 
 # Copy Gemfile and install gems
 COPY Gemfile Gemfile.lock ./
