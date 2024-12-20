@@ -15,3 +15,5 @@
 <hr>
 
 [About](about)
+
+[Master's Thesis](thesis)
